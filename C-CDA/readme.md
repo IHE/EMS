@@ -5,6 +5,8 @@ The HL7 C-CDA specification includes [samples](https://cdasearch.hl7.org/search)
 - [Sample History and Physical](https://cdasearch.hl7.org/examples/view/Documents/History%20and%20Physical)
 - [Sample of an allergy to latex section](https://cdasearch.hl7.org/examples/view/Allergies/Allergy%20to%20latex)
 
+The [HL7 CDA C-CDA companion guide](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=447) has a [HL7 github CDA-ccd-companion](https://github.com/HL7/cda-ccda-companion/) also includes some samples.
+
 ONC has a site for C-CDA things including Validation and scorecard.
 https://site.healthit.gov/sandbox-ccda
 
