@@ -6,9 +6,9 @@ PCC [existing publications relevant to EMS](https://profiles.ihe.net/PCC/ems.htm
 
 ## Get involved
 
-To be added as a contributor, send your github account name to JohnMoehrke@gmail.com with explaination of how you will be contributing. All contributions are under [CC-BY-4.0](LICENSE), and can not include licensed material without express written indication to IHE.
+To be added as a contributor, send your github account name to JohnMoehrke@gmail.com with explanation of how you will be contributing. All contributions are under [CC-BY-4.0](LICENSE), and can not include licensed material without express written indication to IHE.
 
-Google mailing group [EMS Task Force](https://groups.google.com/g/ems-task-force). You can requet to join.
+Google mailing group [EMS Task Force](https://groups.google.com/g/ems-task-force). You can request to join.
 
 ## EMS Overall workflow
 
