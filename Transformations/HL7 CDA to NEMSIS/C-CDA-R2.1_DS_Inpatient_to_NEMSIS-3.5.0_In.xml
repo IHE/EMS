@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <realmCode code="US"/>
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01"/>
+	<templateId root="2.16.840.1.113883.10.20.22.1.8" extension="2015-08-01"/>
+	<id extension="DS3489" root="2.16.840.1.113883.19.5.99999.1"/>
+	<code codeSystem="2.16.840.1.113883.6.1" code="18842-5" displayName="Discharge summary"/>
+  <title>Sample Discharge Summary for EMS Interoperability</title>
+  <effectiveTime value="202401151250-0700"/>
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
+  <languageCode code="en-US"/>
+  <setId extension="sDS3489" root="2.16.840.1.113883.19.5.99999.19"/>
+  <versionNumber value="1"/>
+  <recordTarget>
+    <patientRole>
+      <id assigningAuthorityName="Sample Hospital" root="2.16.840.1.113883.19.5.99999.2" extension="94872"/>
+      <id assigningAuthorityName="US Social Security Administration" root="2.16.840.1.113883.4.1" extension="111-00-6584"/>
+      <addr use="HP">
+        <streetAddressLine>3562 Oak Wood Drive</streetAddressLine>
+        <streetAddressLine>Unit A</streetAddressLine>
+        <streetAddressLine>PO Box 1682</streetAddressLine>
+        <city>Park City</city>
+        <state>UT</state>
+        <postalCode>84060</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom value="tel:(435)234-0918" use="HP"/>
+      <telecom value="tel:+1-801-837-3926" use="MC"/>
+      <patient>
+        <name use="L">
+          <given>Kailyn</given>
+          <given>Adella</given>
+          <family>Koelpin</family>
+        </name>
+        <name>
+          <given>Kailyn</given>
+          <given>Adella</given>
+          <family qualifier="BR">Ruecker</family>
+        </name>
+        <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="F" displayName="Female"/>
+        <birthTime value="19500628"/>
+        <maritalStatusCode codeSystem="2.16.840.1.113883.5.2" code="M" displayName="Married"/>
+        <raceCode codeSystem="2.16.840.1.113883.6.238" code="2028-9" displayName="Asian"/>
+        <sdtc:raceCode codeSystem="2.16.840.1.113883.6.238" code="2076-8" displayName="Native Hawaiian or Other Pacific Islander"/>
+        <sdtc:raceCode codeSystem="2.16.840.1.113883.6.238" code="2036-2" displayName="Filipino"/>
+        <sdtc:raceCode codeSystem="2.16.840.1.113883.6.238" code="2080-0" displayName="Samoan"/>
+        <ethnicGroupCode codeSystem="2.16.840.1.113883.6.238" code="2186-5" displayName="Not Hispanic or Latino"/>
+        <languageCommunication>
+          <languageCode code="en"/>
+          <proficiencyLevelCode codeSystem="2.16.840.1.113883.5.61" code="G" displayName="Good"/>
+          <preferenceInd value="true"/>
+        </languageCommunication>
+        </patient>
+      </patientRole>
+  </recordTarget>
+  <author>
+    <time value="202401151250-0700"/>
+    <assignedAuthor>
+      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+      <code codeSystem="2.16.840.1.113883.6.101" code="282N00000X" displayName="Hospitals; General Acute Care Hospital"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Walt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedPerson>
+        <name>
+          <given>Carter</given>
+          <family>Schaefer</family>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <author>
+    <time value="202401151250-0700"/>
+    <assignedAuthor>
+      <id nullFlavor="NI"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Salt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedAuthoringDevice>
+        <manufacturerModelName>Sample EHR Vendor</manufacturerModelName>
+        <softwareName>Sample EHR Software</softwareName>
+      </assignedAuthoringDevice>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+        <name>Sample Hospital</name>
+        <telecom use="WP" value="tel:+1-801-213-3930"/>
+        <addr use="WP">
+          <streetAddressLine>295 Chipeta Way</streetAddressLine>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postalCode>84108</postalCode>
+          <country>US</country>
+        </addr>
+        </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+	<legalAuthenticator>
+		<time value="202401151250-0700"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<id root="2.16.840.1.113883.4.6" extension="99999999999"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Salt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedPerson>
+        <name>
+          <given>Carter</given>
+          <family>Schaefer</family>
+        </name>
+      </assignedPerson>
+		</assignedEntity>
+	</legalAuthenticator>
+	<componentOf>
+		<encompassingEncounter>
+			<id root="2.16.840.1.113883.19" extension="I84372"/>
+			<effectiveTime>
+				<low value="202401072034-0700"/>
+				<high value="202401091032-0700"/>
+			</effectiveTime>
+			<dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5" code="01" displayName="	Discharged to home care or self care (routine discharge)"/>
+		</encompassingEncounter>
+	</componentOf>
+  <component>
+    <structuredBody>
+      <!-- Allergies and Intolerances Section (entries optional) (V3) -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.6" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="48765-2" displayName="Allergies and adverse reactions"/>
+          <title>Allergies and Intolerances</title>
+          <text ID="allergiesNoKnown">No Known Medication Allergies</text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" extension="2015-08-01"/>
+              <id root="10cb0be0-c63d-4e60-adf9-ae1646fdb9d5"/>
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6"/>
+              <text>
+                <reference value="#allergiesNoKnown"/>
+              </text>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="20030115"/>
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="20030115"/>
+                <assignedAuthor>
+                  <id extension="9999999998" root="2.16.840.1.113883.4.6"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207Q00000X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine"/>
+                  <telecom use="WP" value="tel:555-555-1002"/>
+                  <assignedPerson>
+                    <name>
+                      <given>Marlin</given>
+                      <family>Gerlach</family>
+                    </name>
+                  </assignedPerson>
+                </assignedAuthor>
+              </author>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
+                  <id root="0a6241c6-b69f-46c8-9454-e3448f88dbcb"/>
+                  <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                  <text>
+                    <reference value="#allergiesNoKnown"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low nullFlavor="NI"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="416098002" displayName="Allergy to drug (finding)"/>
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="20030115"/>
+                    <assignedAuthor>
+                      <id extension="9999999998" root="2.16.840.1.113883.4.6"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207Q00000X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                      <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code nullFlavor="NA"/>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+      </section>
+      </component>
+      <!-- Hospital Course Section -->
+			<component>
+				<section>
+					<templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.5"/>
+					<code codeSystem="2.16.840.1.113883.6.1" code="8648-8" displayName="Hospital course"/>
+					<title>Hospital Course</title>
+					<text>Patient was admitted for injuries caused by car crash. Suturing was done to repair laceration in right upper abdomen. Patient was hospitalized to monitor concussion, then discharged to home.</text>
+				</section>
+			</component>
+      <!-- Discharge Diagnosis Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.24"/>
+          <templateId root="2.16.840.1.113883.10.20.22.2.24" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="11535-2" displayName="Hospital discharge Dx">
+            <translation codeSystem="2.16.840.1.113883.6.1" code="78375-3" displayName="Discharge diagnosis"/>
+          </code>
+          <title>Discharge Diagnoses</title>
+          <text>
+            <table>
+							<thead>
+								<tr>
+									<th>Diagnosis</th>
+									<th>Onset</th>
+									<th>Resolution</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="DischargeDx_1">
+									<td>Laceration of abdominal wall, Right upper quadrant</td>
+									<td>January 7, 2024, 19:30 MST</td>
+									<td>January 7, 2024, 22:09 MST</td>
+								</tr>
+								<tr ID="DischargeDx_2">
+									<td>Concussion with loss of consciousness</td>
+									<td>January 7, 2024, 19:30 MST</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.33"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.33" extension="2015-08-01"/>
+              <code codeSystem="2.16.840.1.113883.6.1"  code="11535-2" displayName="Hospital discharge Dx"/>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                  <id root="28bc3060-4bb3-411f-971e-ac143e6e9014"/>
+                  <code codeSystem="2.16.840.1.113883.6.96" code="64572001" displayName="Disease">
+                    <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
+                  </code>
+                  <text>
+                    <reference value="#DischargeDx_1" />
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="202401071930-0700"/>
+                    <high value="202401072209-0700"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="10904991000119107" displayName="Laceration of abdominal wall (disorder)">
+                    <qualifier>
+                      <name codeSystem="2.16.840.1.113883.6.96" code="363698007" displayName="Finding site"/>
+                      <value codeSystem="2.16.840.1.113883.6.96" code="255497008" displayName="Right upper quadrant"/>
+                    </qualifier>
+                    <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S31.100A" displayName="Unspecified open wound of abdominal wall, right upper quadrant without penetration into peritoneal cavity, initial encounter"/>
+                  </value>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202401072048-0700"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                  <id root="30ec7c97-2717-47cf-ac1d-38ae2c750bf7"/>
+                  <code codeSystem="2.16.840.1.113883.6.96" code="64572001" displayName="Disease">
+                    <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
+                  </code>
+                  <text>
+                    <reference value="#DischargeDx_2" />
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="202401071930-0700"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="62564004" displayName="Concussion with loss of consciousness (disorder)">
+                    <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S06.0X9A" displayName="Concussion with loss of consciousness of unspecified duration, initial encounter"/>
+                  </value>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202401072118-0700"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!-- Discharge Medications Section -->
+      <component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.11.1" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="10183-2" displayName="Hospital discharge medications">
+            <translation codeSystem="2.16.840.1.113883.6.1" code="75311-1" displayName="Discharge medications"/>
+          </code>
+          <title>Discharge Medications</title>
+					<text>
+						<table>
+							<thead>
+								<tr>
+									<th>Medication</th>
+									<th>Instructions</th>
+									<th>Dosage</th>
+									<th>Effective Dates (start - stop)</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="Medication_1">
+									<td>Ibuprofen 600mg Oral Tablet</td>
+									<td>Take 1 tablet QID PRN</td>
+									<td>600 MG</td>
+									<td>January 9, 2024 - January 14, 2024</td>
+									<td>Active</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.35"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.35" extension="2016-03-01"/>
+							<code codeSystem="2.16.840.1.113883.6.1" code="10183-2" displayName="Hospital discharge medications">
+                <translation codeSystem="2.16.840.1.113883.6.1" code="75311-1" displayName="Discharge medications"/>
+              </code>
+							<statusCode code="completed"/>
+							<entryRelationship typeCode="SUBJ">
+								<substanceAdministration classCode="SBADM" moodCode="INT">
+									<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+									<id root="f8a966fc-6519-4f5a-b452-7afc7ff28999"/>
+									<statusCode code="active"/>
+									<effectiveTime xsi:type="IVL_TS">
+										<low value="20240109"/>
+										<high value="20240114"/>
+									</effectiveTime>
+									<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+										<period value="6" unit="h"/>
+									</effectiveTime>
+									<routeCode codeSystem="2.16.840.1.113883.3.26.1.1" code="C38288" displayName="Oral Route of Administration">
+                    <translation codeSystem="2.16.840.1.113883.6.96" code="26643006" displayName="Oral route (qualifier value)"/>
+                  </routeCode>
+									<doseQuantity value="1"/>
+									<consumable>
+										<manufacturedProduct classCode="MANU">
+											<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+											<id root="e6b2a816-10d8-4087-a646-a482165ee70e"/>
+											<manufacturedMaterial>
+												<code codeSystem="2.16.840.1.113883.6.88" code="197806" displayName="ibuprofen 600 MG Oral Tablet"/>
+											</manufacturedMaterial>
+										</manufacturedProduct>
+									</consumable>
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="2024010090830-0700"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+								</substanceAdministration>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+      <!-- Plan of Treatment Section -->
+      <component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.10"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09"/>
+					<code codeSystem="2.16.840.1.113883.6.1" code="18776-5" displayName="Plan of care note"/>
+					<title>Plan of Treatment</title>
+					<text>
+						<table>
+							<thead>
+								<tr>
+									<th>Planned Activity</th>
+									<th>Planned Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Removal of suture from abdominal wall</td>
+									<td>January 21, 2024, 10:00 MST</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="ARQ">
+              <templateId root="2.16.840.1.113883.10.20.22.4.41"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.41" extension="2014-06-09"/>
+              <id root="8557de4e-0e4f-48c7-9be8-60e448297d87"/>
+              <code codeSystem="2.16.840.1.113883.6.96" code="76687004" displayName="Removal of suture from abdominal wall"/>
+              <statusCode code="active"/>
+              <effectiveTime value="202401211000-0700"/>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="2024010090815-0700"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                </assignedAuthor>
+              </author>
+        </procedure>
+					</entry>
+				</section>
+			</component>
+      <!-- Admission Diagnosis Section-->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.43"/>
+          <templateId root="2.16.840.1.113883.10.20.22.2.43" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="46241-6" displayName="Hospital admission Dx">
+            <translation codeSystem="2.16.840.1.113883.6.1" code="42347-5" displayName="Admission diagnosis"/>
+          </code>
+          <title>Admission Diagnoses</title>
+          <text>
+            <table>
+							<thead>
+								<tr>
+									<th>Diagnosis</th>
+									<th>Onset</th>
+									<th>Resolution</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="AsmissionDx_1">
+									<td>Laceration of abdominal wall, Right upper quadrant</td>
+									<td>January 7, 2024, 19:30 MST</td>
+									<td></td>
+								</tr>
+								<tr ID="AsmissionDx_2">
+									<td>Concussion with loss of consciousness</td>
+									<td>January 7, 2024, 19:30 MST</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.34"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.34" extension="2015-08-01"/>
+              <code codeSystem="2.16.840.1.113883.6.1"  code="46241-6" displayName="Hospital admission Dx"/>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                  <id root="28bc3060-4bb3-411f-971e-ac143e6e9014"/>
+                  <code codeSystem="2.16.840.1.113883.6.96" code="64572001" displayName="Disease">
+                    <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
+                  </code>
+                  <text>
+                    <reference value="#AsmissionDx_1" />
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="202401071930-0700"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="10904991000119107" displayName="Laceration of abdominal wall (disorder)">
+                    <qualifier>
+                      <name codeSystem="2.16.840.1.113883.6.96" code="363698007" displayName="Finding site"/>
+                      <value codeSystem="2.16.840.1.113883.6.96" code="255497008" displayName="Right upper quadrant"/>
+                    </qualifier>
+                    <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S31.100A" displayName="Unspecified open wound of abdominal wall, right upper quadrant without penetration into peritoneal cavity, initial encounter"/>
+                  </value>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202401072048-0700"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                  <id root="30ec7c97-2717-47cf-ac1d-38ae2c750bf7"/>
+                  <code codeSystem="2.16.840.1.113883.6.96" code="64572001" displayName="Disease">
+                    <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
+                  </code>
+                  <text>
+                    <reference value="#AdmissionDx_2" />
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="202401071930-0700"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="62564004" displayName="Concussion with loss of consciousness (disorder)">
+                    <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S06.0X9A" displayName="Concussion with loss of consciousness of unspecified duration, initial encounter"/>
+                  </value>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202401072118-0700"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!-- Procedures Section -->
+      <component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.7" extension="2014-06-09"/>
+					<code codeSystem="2.16.840.1.113883.6.1" code="47519-4" displayName="History of procedures"/>
+					<title>Procedures</title>
+					<text>
+						<table>
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Date/Time</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="Procedure_1">
+									<td>Suture of anterior abdominal wall, Entire right upper quadrant of abdomen</td>
+									<td>January 7, 2024, 19:41 - 22:09 MST</td>
+									<td>Completed</td>
+								</tr>
+								<tr ID="Procedure_2">
+									<td>Computed tomography of entire head</td>
+									<td>January 7, 2024, 23:02 - 23:20 MST</td>
+									<td>Completed</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<procedure classCode="PROC" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.14"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09"/>
+							<id root="92061318-42d9-49cd-99d9-c779b62889ef"/>
+							<code codeSystem="2.16.840.1.113883.6.96" code="264963003" displayName="Suture of anterior abdominal wall">
+                <originalText>
+                  <reference value="#Procedure_1"/>
+                </originalText>
+								<translation codeSystem="2.16.840.1.113883.6.4" code="0HQ7XZZ" displayName="Repair Abdomen Skin, External Approach"/>
+							</code>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="202401071941-0700"/>
+								<high value="202401072209-0700"/>
+							</effectiveTime>
+							<targetSiteCode codeSystem="2.16.840.1.113883.6.96" code="243354008" displayName="Entire right upper quadrant of abdomen"/>
+              <performer>
+                <assignedEntity>
+                  <id root="2.16.840.1.113883.4.6" extension="99999999999"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                  <representedOrganization>
+                    <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                    <name>Sample Hospital</name>
+                    <telecom use="WP" value="tel:+1-801-213-3930"/>
+                    <addr use="WP">
+                      <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                      <city>Salt Lake City</city>
+                      <state>UT</state>
+                      <postalCode>84108</postalCode>
+                      <country>US</country>
+                    </addr>
+                    </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202401072048-0700"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                </assignedAuthor>
+              </author>
+        </procedure>
+					</entry>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.13"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.13" extension="2014-06-09"/>
+							<id root="55550e2e-c247-4d44-9676-dd415ee97caa"/>
+							<code codeSystem="2.16.840.1.113883.6.96" code="408754009" displayName="Computed tomography of entire head">
+                <originalText>
+                  <reference value="#Procedure_2"/>
+                </originalText>
+								<translation codeSystem="2.16.840.1.113883.6.4" code="BW28ZZZ" displayName="Computerized Tomography (CT Scan) of Head"/>
+							</code>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="202401072302-0700"/>
+								<high value="202401072320-0700"/>
+							</effectiveTime>
+							<value xsi:type="ED" nullFlavor="NA"/>
+							<targetSiteCode codeSystem="2.16.840.1.113883.6.96" code="302548004" displayName="Entire head (body structure)"/>
+              <performer>
+                <assignedEntity>
+                  <id root="2.16.840.1.113883.4.6" extension="99999999999"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                  <representedOrganization>
+                    <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                    <name>Sample Hospital</name>
+                    <telecom use="WP" value="tel:+1-801-213-3930"/>
+                    <addr use="WP">
+                      <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                      <city>Salt Lake City</city>
+                      <state>UT</state>
+                      <postalCode>84108</postalCode>
+                      <country>US</country>
+                    </addr>
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202401072048-0700"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                </assignedAuthor>
+              </author>
+            </observation>
+					</entry>
+				</section>
+			</component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

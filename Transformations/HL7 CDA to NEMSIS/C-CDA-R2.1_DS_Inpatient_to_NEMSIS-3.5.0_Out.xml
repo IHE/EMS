@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     This partial NEMSIS 3.5.0 document was generated from an HL7 C-CDA 2.1 Discharge Summary document 
+     via an XML Stylesheet Language Transformation (XSLT). It is not valid per the NEMSIS 3.5.0 XSD. 
+     Its purpose is to convey hospital patient care information in the NEMSIS eOutcome section.
+    -->
+<EMSDataSet xmlns="http://www.nemsis.org"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.0/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
+   <Header>
+      <PatientCareReport>
+         <ePatient>
+            <ePatient.PatientNameGroup>
+               <ePatient.02>Koelpin</ePatient.02>
+               <ePatient.03>Kailyn</ePatient.03>
+               <ePatient.04>Adella</ePatient.04>
+            </ePatient.PatientNameGroup>
+            <ePatient.12>111006584</ePatient.12>
+            <ePatient.13>9906001</ePatient.13>
+            <ePatient.14>2514003</ePatient.14>
+            <ePatient.14>2514009</ePatient.14>
+            <ePatient.17>1950-06-28</ePatient.17>
+            <ePatient.18 PhoneNumberType="9913003">435-234-0918</ePatient.18>
+         </ePatient>
+         <eOutcome>
+            <eOutcome.01 xsi:nil="true" NV="7701003"/>
+            <eOutcome.02>01</eOutcome.02>
+            <eOutcome.ExternalDataGroup>
+               <eOutcome.03>4303005</eOutcome.03>
+               <eOutcome.04>I84372</eOutcome.04>
+            </eOutcome.ExternalDataGroup>
+            <eOutcome.EmergencyDepartmentProceduresGroup>
+               <eOutcome.09 xsi:nil="true" NV="7701003"/>
+               <eOutcome.19 xsi:nil="true" NV="7701003"/>
+            </eOutcome.EmergencyDepartmentProceduresGroup>
+            <eOutcome.10 xsi:nil="true" NV="7701003"/>
+            <eOutcome.11>2024-01-07T20:34:00-07:00</eOutcome.11>
+            <eOutcome.HospitalProceduresGroup>
+               <eOutcome.12>0HQ7XZZ</eOutcome.12>
+               <eOutcome.20>2024-01-07T22:09:00-07:00</eOutcome.20>
+            </eOutcome.HospitalProceduresGroup>
+            <eOutcome.HospitalProceduresGroup>
+               <eOutcome.12>BW28ZZZ</eOutcome.12>
+               <eOutcome.20>2024-01-07T23:20:00-07:00</eOutcome.20>
+            </eOutcome.HospitalProceduresGroup>
+            <eOutcome.13>S31.100A</eOutcome.13>
+            <eOutcome.13>S06.0X9A</eOutcome.13>
+            <eOutcome.16>2024-01-09T10:32:00-07:00</eOutcome.16>
+            <eOutcome.18 xsi:nil="true" NV="7701003"/>
+         </eOutcome>
+      </PatientCareReport>
+   </Header>
+</EMSDataSet>
