@@ -19,4 +19,12 @@ Additional samples from multiple EHR products are available here:
 
 https://github.com/jddamore/ccda-samples
 
+Synthia is an open-source application for generating large amounts of sample HL7 C-CDA and FHIR data that statistically mirror attributes of the real population:
+
+https://github.com/synthetichealth/synthea
+
+Pre-generated data sets from Synthia are available here:
+
+https://synthea.mitre.org/
+
 Samples are also available in the [Transformations](../Transformations) folder of this repository.
