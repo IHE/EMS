@@ -10,27 +10,47 @@ HL7 C-CDA and NEMSIS v3.5.0. This stylesheet transforms a Clinical Document from
 provided in HL7 C-CDA 2.1 format, into a partial NEMSIS v3.5.0 EMSDataSet XML document containing 
 an eOutcome data section representing the information from the hospital's care of the patient.
 
-This stylesheet assumes the document to be transformed is a C-CDA v2.1 Discharge Summary 
-representing a hospital inpatient encounter (not an emergency department encounter).
+The document to be transformed may represent a hospital emergency department or inpatient encounter.
 
-Version: 2.1.2022Sep_3.5.0.230317CP4_240229
-Revision Date: February 29, 2024
+Version: 2.1.2022Sep_3.5.0.230317CP4_240627
+Revision Date: June 27, 2024
 
 -->
 
 <xsl:stylesheet version="2.0"
-	xmlns="http://www.nemsis.org"
+  xmlns="http://www.nemsis.org"
   xmlns:hl7="urn:hl7-org:v3"
   xmlns:n="http://www.nemsis.org"
   xmlns:sdtc="urn:hl7-org:sdtc"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	exclude-result-prefixes="hl7 n sdtc xs">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  exclude-result-prefixes="hl7 n sdtc xs">
 
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
   <xsl:key name="code" match="*" use="@hl7"/>
+
+
+  <!-- #Terminology Function# -->
+
+  <!-- If you have access to a terminology mapping service, edit this function to implement API calls. -->
+  <xsl:function name="n:terminology">
+    <!-- An HL7 C-CDA "code" or "value" element -->
+    <xsl:param name="code" required="yes"/>
+    <!-- The OID of the requested code system to map to -->
+    <xsl:param name="codeSystem" required="yes" as="xs:string"/>
+    <!-- Implement terminology service API call here. It should return a string value. -->
+  </xsl:function>
+
+
+  <!-- Variable to select encounter type -->
+  <!-- This transformation expects emergency department encounters to have the value "EMER". Any 
+       other value is treated as an inpatient encounter. -->
+  <xsl:variable name="encounterType" select="/hl7:ClinicalDocument/hl7:componentOf/hl7:encompassingEncounter/hl7:code/@code"/>
+
+
+  <!-- #Root Template# -->
 
   <xsl:template match="/">
     <xsl:comment>
@@ -39,6 +59,12 @@ Revision Date: February 29, 2024
      Its purpose is to convey hospital patient care information in the NEMSIS eOutcome section.
     </xsl:comment>
     <xsl:text>&#10;</xsl:text>
+    <xsl:if test="not(/hl7:ClinicalDocument/hl7:templateId/@root = '2.16.840.1.113883.10.20.22.1.8')">
+      <xsl:comment>
+        Warning: The source document does not appear to be an HL7 C-CDA 2.1 Discharge Summary. 
+        Results may be incomplete or incorrect.
+      </xsl:comment>
+    </xsl:if>
     <xsl:copy>
       <xsl:apply-templates select="hl7:ClinicalDocument"/>
     </xsl:copy>
@@ -66,8 +92,7 @@ Revision Date: February 29, 2024
   <!-- Patient -->
 
   <!-- To assist patient identification and record matching, this transformation generates an 
-       incomplete NEMSIS ePatient section. It only includes the elements for which data are 
-       available in the C-CDA document. -->
+       incomplete NEMSIS ePatient section. It only includes some elements. -->
   <xsl:template match="hl7:patientRole">
     <ePatient>
       <!-- Names -->
@@ -94,7 +119,7 @@ Revision Date: February 29, 2024
       <!-- Race: Hispanic or Latino Ethnicity-->
       <xsl:apply-templates select="hl7:patient/hl7:ethnicityCode"/>
       <!-- Date of Birth -->
-      <xsl:apply-templates select="hl7:patient/hl7:birthTime"/>
+      <xsl:apply-templates select="hl7:patient/hl7:birthTime[matches(@value, '^[0-9]{8}')]"/>
       <!-- Phone Numbers -->
       <xsl:apply-templates select="hl7:telecom[starts-with(@value, 'tel:')]"/>
       <!-- Email Addresses -->
@@ -108,17 +133,26 @@ Revision Date: February 29, 2024
   <!-- This generates a complete NEMSIS eOutcome section, filling in "Not Values" where data are 
        not available in the C-CDA document. -->
   <xsl:template match="hl7:encompassingEncounter">
+
+    <!-- Variable to select procedures -->
+    <xsl:variable name="procedures" select="/hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:templateId[starts-with(@root, '2.16.840.1.113883.10.20.22.2.7')]]/hl7:entry/*[not(@negationInd = 'true')]"/>
+    
+    <!-- Variable to select diagnoses (admission diagnoses, discharge diagnoses, and problems) -->
+    <!-- If a diagnosis has a documented effectiveTime/low that is more than one day prior to 
+         the date of effectiveTime/low of the encompassingEncounter, exclude it. -->
+    <xsl:variable name="diagnoses" select="/hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:templateId/@root=('2.16.840.1.113883.10.20.22.2.43', '2.16.840.1.113883.10.20.22.2.24', '2.16.840.1.113883.10.20.22.2.5')]/hl7:entry/hl7:act/hl7:entryRelationship/hl7:observation[not(@negationInd = 'true') and hl7:effectiveTime/hl7:low/xs:date(n:date(@value)) >= current()/hl7:effectiveTime/hl7:low/xs:date(n:date(@value)) - xs:dayTimeDuration('P1D')]"/>
+    
     <eOutcome>
-      <!-- ED Disposition: Not Recorded -->
-      <eOutcome.01 xsi:nil="true" NV="7701003"/>
+      <!-- Dispositions: HL7 recommends using NUBC UB-04 FL17 Patient Status 
+           (2.16.840.1.113883.3.88.12.80.33) but also allows other code sets, such as Discharge 
+           Disposition (HL7) (2.16.840.1.113883.12.112). NEMSIS supports a subset of those code 
+           sets. Map the code if it is supported by NEMSIS. This translation could be improved by 
+           mapping non-NEMSIS-supported codes to NEMSIS-supported codes. For example, all codes in 
+           the 30s could be mapped to "30", since they represent variations of "Still a Patient". -->
+      <!-- ED Disposition -->
+      <xsl:copy-of select="n:map('eOutcome.01', hl7:dischargeDispositionCode[$encounterType = 'EMER'], true())"/>
       <!-- Hospital Disposition -->
-      <!-- HL7 recommends using NUBC UB-04 FL17 Patient Status (2.16.840.1.113883.3.88.12.80.33) but
-           also allows other code sets, such as Discharge Disposition (HL7) (2.16.840.1.113883.12.112).
-           NEMSIS supports a subset of those code sets. Map the code if it is supported by NEMSIS. 
-           This translation could be improved by mapping non-NEMSIS-supported codes to NEMSIS-
-           supported codes. For example, all codes in the 30s could be mapped to "30", since they 
-           represent variations of "Still a Patient". -->
-      <xsl:copy-of select="n:map('eOutcome.02', hl7:dischargeDispositionCode[matches(@code, '^(0?[1-7])|(2[01])|(30)|(43)|(5[01])|(6[1-6])|(70)$')], true())"/>
+      <xsl:copy-of select="n:map('eOutcome.02', hl7:dischargeDispositionCode[not($encounterType = 'EMER')], true())"/>
       <!-- External Report ID: Encounter ID -->
       <!-- NEMSIS does not specify which of the several identifiers available in a C-CDA document 
            should be used for External Report ID/Number. This transformation uses 
@@ -127,22 +161,39 @@ Revision Date: February 29, 2024
            * ClinicalDocument/id: The clinical document instance identifier
            * ClinicalDocument/setId: The clinical document set identifier -->
       <xsl:apply-templates select="hl7:id[1]"/>
-      <!-- ED Procedures: Not Recorded -->
-      <eOutcome.EmergencyDepartmentProceduresGroup>
-        <eOutcome.09 xsi:nil="true" NV="7701003"/>
-        <eOutcome.19 xsi:nil="true" NV="7701003"/>
-      </eOutcome.EmergencyDepartmentProceduresGroup>
-      <!-- ED Diagnoses: Not Recorded -->
-      <eOutcome.10 xsi:nil="true" NV="7701003"/>
-      <!-- Date/Time of Hospital Admission -->
-      <xsl:copy-of select="n:map('eOutcome.11', hl7:effectiveTime/hl7:low, true())"/>
-      <!-- Hospital Procedures -->
-      <!-- NEMSIS only supports ICD-10-PCS, so only process procedures with ICD-10 codes provided, 
-           which may come from code or code/translation -->
-      <xsl:variable name="procedures" select="ancestor::hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:templateId[starts-with(@root, '2.16.840.1.113883.10.20.22.2.7')]]/hl7:entry/*[not(@negationInd = 'true') and .//@codeSystem = '2.16.840.1.113883.6.4']"/>
+      <!-- ED Procedures -->
       <xsl:choose>
-        <xsl:when test="$procedures">
-          <xsl:apply-templates select="$procedures"/>
+        <xsl:when test="$encounterType = 'EMER' and $procedures">
+          <xsl:apply-templates select="$procedures">
+            <xsl:with-param name="groupElement">eOutcome.EmergencyDepartmentProceduresGroup</xsl:with-param>
+            <xsl:with-param name="procedureElement">eOutcome.09</xsl:with-param>
+            <xsl:with-param name="dateTimeElement">eOutcome.19</xsl:with-param>
+            </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+          <eOutcome.EmergencyDepartmentProceduresGroup>
+            <eOutcome.09 xsi:nil="true" NV="7701003"/>
+            <eOutcome.19 xsi:nil="true" NV="7701003"/>
+          </eOutcome.EmergencyDepartmentProceduresGroup>
+        </xsl:otherwise>
+      </xsl:choose>
+      <!-- ED Diagnoses -->
+      <!-- This transformation de-duplicates diagnosis codes (if the same diagnosis code is 
+           recorded more than once, it is only generated once in the output). -->
+      <xsl:variable name="edDiagnoses">
+        <xsl:copy-of select="n:map('eOutcome.10', $diagnoses[$encounterType = 'EMER'], true())"/>
+      </xsl:variable>
+      <xsl:copy-of select="$edDiagnoses/node()[not(. = preceding-sibling::*)]"/>
+      <!-- Date/Time of Hospital Admission -->
+      <xsl:copy-of select="n:map('eOutcome.11', hl7:effectiveTime/hl7:low[not($encounterType = 'EMER')], true())"/>
+      <!-- Hospital Procedures -->
+      <xsl:choose>
+        <xsl:when test="not($encounterType = 'EMER') and $procedures">
+          <xsl:apply-templates select="$procedures">
+            <xsl:with-param name="groupElement">eOutcome.HospitalProceduresGroup</xsl:with-param>
+            <xsl:with-param name="procedureElement">eOutcome.12</xsl:with-param>
+            <xsl:with-param name="dateTimeElement">eOutcome.20</xsl:with-param>
+            </xsl:apply-templates>
         </xsl:when>
         <xsl:otherwise>
           <eOutcome.HospitalProceduresGroup>
@@ -151,21 +202,17 @@ Revision Date: February 29, 2024
           </eOutcome.HospitalProceduresGroup>
         </xsl:otherwise>
       </xsl:choose>
-      <!-- Hospital Diagnoses (Admission and Discharge) -->
-      <!-- NEMSIS only supports ICD-10-CM, so only process diagnoses with ICD-10 codes provided, 
-           which may come from code or code/translation. -->
-      <!-- It may also be desirable to translate data from the Problem section, which is not 
-           implemented in this transformation. -->
+      <!-- Hospital Diagnoses -->
       <!-- This transformation de-duplicates diagnosis codes (if the same diagnosis code is 
-          recorded more than once, it is only generated once in the output). -->
-      <xsl:variable name="diagnoses">
-        <xsl:copy-of select="n:map('eOutcome.13', ancestor::hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:templateId/@root=('2.16.840.1.113883.10.20.22.2.43', '2.16.840.1.113883.10.20.22.2.24')]/hl7:entry/hl7:act/hl7:entryRelationship/hl7:observation[not(@negationInd = 'true') and .//@codeSystem = '2.16.840.1.113883.6.90'], true())"/>
+           recorded more than once, it is only generated once in the output). -->
+      <xsl:variable name="hospitalDiagnoses">
+        <xsl:copy-of select="n:map('eOutcome.13', $diagnoses[not($encounterType = 'EMER')], true())"/>
       </xsl:variable>
-      <xsl:copy-of select="$diagnoses/*[not (. = preceding-sibling::*)]"/>
+      <xsl:copy-of select="$hospitalDiagnoses/node()[not(. = preceding-sibling::*)]"/>
       <!-- Date/Time of Hospital Discharge -->
-      <xsl:copy-of select="n:map('eOutcome.16', hl7:effectiveTime/hl7:high, true())"/>
-      <!-- Date/Time of ED Admission: Not Recorded -->
-      <eOutcome.18 xsi:nil="true" NV="7701003"/>
+      <xsl:copy-of select="n:map('eOutcome.16', hl7:effectiveTime/hl7:high[not($encounterType = 'EMER')], true())"/>
+      <!-- Date/Time of ED Admission -->
+      <xsl:copy-of select="n:map('eOutcome.18', hl7:effectiveTime/hl7:low[$encounterType = 'EMER'], true())"/>
     </eOutcome>
   </xsl:template>
 
@@ -247,13 +294,18 @@ Revision Date: February 29, 2024
 
   <!-- Driver License -->
   <xsl:template match="hl7:id[starts-with(@root, '2.16.840.1.113883.4.3')]" mode="dl">
-    <!-- The 8th segment of the OID is the state ANSI code; see https://oidref.com/2.16.840.1.113883.4.3 -->
+    <!-- The 8th segment of the OID is the state ANSI code; see https://oidref.com/2.16.840.1.113883.4.3. -->
     <ePatient.20><xsl:number value="tokenize(@root, '.')[8]" format="01"/></ePatient.20>
     <ePatient.21><xsl:value-of select="@extension"/></ePatient.21>
   </xsl:template>
 
+  <!-- Emergency Department Disposition -->
+  <xsl:template match="hl7:dischargeDispositionCode[$encounterType = 'EMER'][matches(@code, '^(0?[1-79])|(2[01])|(30)|(43)|(5[01])|(6[1-6])|(70)$')]">
+    <eOutcome.01><xsl:number value="@code" format="01"/></eOutcome.01>
+  </xsl:template>
+
   <!-- Hospital Disposition -->
-  <xsl:template match="hl7:dischargeDispositionCode">
+  <xsl:template match="hl7:dischargeDispositionCode[not($encounterType = 'EMER')][matches(@code, '^(0?[1-7])|(2[01])|(30)|(43)|(5[01])|(6[1-6])|(70)$')]">
     <eOutcome.02><xsl:number value="@code" format="01"/></eOutcome.02>
   </xsl:template>
 
@@ -270,27 +322,44 @@ Revision Date: February 29, 2024
   </xsl:template>
 
   <!-- Date/Time of Hospital Admission -->
-  <xsl:template match="hl7:encompassingEncounter/hl7:effectiveTime/hl7:low">
+  <xsl:template match="hl7:encompassingEncounter/hl7:effectiveTime/hl7:low[not($encounterType = 'EMER')]">
     <eOutcome.11><xsl:copy-of select="n:dateTime(@value)"/></eOutcome.11>
   </xsl:template>
 
-  <!-- Hospital Procedure -->
-  <xsl:template match="hl7:act[hl7:templateId/@root = '2.16.840.1.113883.10.20.22.4.12'] | hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.10.20.22.4.13'] | hl7:procedure[hl7:templateId/@root = '2.16.840.1.113883.10.20.22.4.14']">
-    <eOutcome.HospitalProceduresGroup>
-      <!-- Hospital Procedure -->
-      <!-- Select ICD-10-PCS code, which may come from code or code/translation -->
-      <eOutcome.12><xsl:value-of select=".//*[@codeSystem='2.16.840.1.113883.6.4'][1]/@code"/></eOutcome.12>
-      <!-- Date/Time Hospital Procedure Performed -->
+  <!-- Date/Time of Emergency Department Admission -->
+  <xsl:template match="hl7:encompassingEncounter/hl7:effectiveTime/hl7:low[$encounterType = 'EMER']">
+    <eOutcome.18><xsl:copy-of select="n:dateTime(@value)"/></eOutcome.18>
+  </xsl:template>
+
+  <!-- Emergency Department or Hospital Procedure -->
+  <!-- NEMSIS only supports ICD-10-PCS. If ICD-10-PCS code is not provided, a terminology service 
+       may be used to translate to ICD-10-PCS. -->
+  <xsl:template match="hl7:section[hl7:templateId[starts-with(@root, '2.16.840.1.113883.10.20.22.2.7')]]/hl7:entry/*[not(@negationInd = 'true')]">
+    <xsl:param name="groupElement"/>
+    <xsl:param name="procedureElement"/>
+    <xsl:param name="dateTimeElement"/>
+    <xsl:element name="{$groupElement}">
+      <!-- ED/Hospital Procedure -->
+      <xsl:copy-of select="n:mapTerminology($procedureElement, hl7:code, '2.16.840.1.113883.6.4')"/>
+      <!-- Date/Time ED/Hospital Procedure Performed -->
       <!-- Select the date/time the procedure was performed (when single timestamp is provided) or 
            completed (high timestamp when low/high are provided). -->
-      <eOutcome.20><xsl:copy-of select="n:dateTime(hl7:effectiveTime/(@value, hl7:high/@value)[1])"/></eOutcome.20>
-    </eOutcome.HospitalProceduresGroup>
+      <xsl:element name="{$dateTimeElement}"><xsl:copy-of select="n:dateTime(hl7:effectiveTime/(@value, hl7:high/@value)[1])"/></xsl:element>
+    </xsl:element>
+  </xsl:template>
+
+  <!-- ED Diagnosis -->
+  <!-- NEMSIS only supports ICD-10-CM. If ICD-10-CM code is not provided, a terminology service 
+       may be used to translate to ICD-10-CM. -->
+  <xsl:template match="hl7:section[hl7:templateId/@root = ('2.16.840.1.113883.10.20.22.2.43', '2.16.840.1.113883.10.20.22.2.24', '2.16.840.1.113883.10.20.22.2.5')]/hl7:entry/hl7:act/hl7:entryRelationship/hl7:observation[$encounterType = 'EMER']">
+    <xsl:copy-of select="n:mapTerminology('eOutcome.10', hl7:value, '2.16.840.1.113883.6.90')"/>
   </xsl:template>
 
   <!-- Hospital Diagnosis -->
-  <xsl:template match="hl7:observation">
-    <!-- Select ICD-10-CM code, which may come from code or code/translation -->
-    <eOutcome.13><xsl:value-of select=".//*[@codeSystem='2.16.840.1.113883.6.90'][1]/@code"/></eOutcome.13>
+  <!-- NEMSIS only supports ICD-10-CM. If ICD-10-CM code is not provided, a terminology service 
+       may be used to translate to ICD-10-CM. -->
+  <xsl:template match="hl7:section[hl7:templateId/@root = ('2.16.840.1.113883.10.20.22.2.43', '2.16.840.1.113883.10.20.22.2.24', '2.16.840.1.113883.10.20.22.2.5')]/hl7:entry/hl7:act/hl7:entryRelationship/hl7:observation[not($encounterType = 'EMER')]">
+    <xsl:copy-of select="n:mapTerminology('eOutcome.13', hl7:value, '2.16.840.1.113883.6.90')"/>
   </xsl:template>
 
   <!-- Date/Time of Hospital Discharge -->
@@ -302,17 +371,17 @@ Revision Date: February 29, 2024
   <!-- #Functions# -->
 
   <xsl:function name="n:map">
-    <xsl:param name="nemsisElementName"/>
+    <xsl:param name="nemsisElementName" required="yes" as="xs:string"/>
     <xsl:param name="hl7Element"/>
     <xsl:param name="nemsisRequired" as="xs:boolean"/>
-    <xsl:message><xsl:value-of select="$nemsisElementName"/></xsl:message>
-    <xsl:message><xsl:value-of select="$nemsisRequired"/></xsl:message>
+    <xsl:variable name="result">
+      <xsl:apply-templates select="$hl7Element"/>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="$hl7Element">
-        <xsl:apply-templates select="$hl7Element"/>
+      <xsl:when test="$result/node()[node()|@*]">
+        <xsl:copy-of select="$result"/>
       </xsl:when>
       <xsl:when test="$nemsisRequired">
-        <xsl:message>NEMSIS element required</xsl:message>
         <xsl:element name="{$nemsisElementName}">
           <xsl:attribute name="xsi:nil">true</xsl:attribute>
           <xsl:attribute name="NV">7701003</xsl:attribute>
@@ -321,34 +390,56 @@ Revision Date: February 29, 2024
     </xsl:choose>
   </xsl:function>
 
+  <xsl:function name="n:mapTerminology">
+    <xsl:param name="nemsisElementName" required="yes" as="xs:string"/>
+    <xsl:param name="code" required="yes"/>
+    <xsl:param name="codeSystem" required="yes" as="xs:string"/>
+    <!-- Select code from the requested code system, which may come from code or code/translation -->
+    <xsl:variable name="codeInSource" select="$code//*[@codeSystem=$codeSystem]/@code[1]"/>
+     <xsl:choose>
+      <!-- Return the value if found -->
+      <xsl:when test="$codeInSource">
+        <xsl:element name="{$nemsisElementName}">
+          <xsl:value-of select="$codeInSource"/>
+        </xsl:element>      
+      </xsl:when>
+      <!-- Otherwise, call the terminology service (extensible function is near the top of this XSLT) -->
+      <xsl:otherwise>
+        <xsl:variable name="codeFromTerminologyService" select="n:terminology($code, $codeSystem)"/>
+        <xsl:choose>
+          <xsl:when test="$codeFromTerminologyService">
+            <xsl:element name="{$nemsisElementName}">
+              <xsl:value-of select="$codeFromTerminologyService"/>
+            </xsl:element>      
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:comment>Unable to map code <xsl:value-of select="string-join($code/(@code, @displayName), ' ')"/> from code system <xsl:value-of select="string-join($code/(@codeSystem, @codeSystemName), ' ')"/>.</xsl:comment>
+            <xsl:element name="{$nemsisElementName}">
+              <xsl:attribute name="xsi:nil">true</xsl:attribute>
+              <xsl:attribute name="NV">7701003</xsl:attribute>
+            </xsl:element>      
+              </xsl:otherwise>
+          </xsl:choose>
+      </xsl:otherwise>
+     </xsl:choose>
+  </xsl:function>
+
   <xsl:function name="n:dateTime">
     <xsl:param name="hl7DateTime"/>
-    <xsl:choose>
-      <!-- Only transform dateTime values that are specified at least to the minute and have a timezone -->
-      <xsl:when test="matches($hl7DateTime, '^([0-9]{12}|[0-9]{14}(\.[0-9]+)?)([+-][0-9]{4})$')">
-        <!-- Add "00" seconds if seconds are missing -->
-        <xsl:variable name="fullDateTime" select="replace($hl7DateTime, '^([0-9]{12})([+-][0-9]{4})$', '$100$2')"/>
-        <xsl:value-of select="replace($fullDateTime, '^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})?(\.[0-9]+)?([+-])([0-9]{2})([0-9]{2})$','$1-$2-$3T$4:$5:$6$7$8$9:$10')"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="xsi:nil" select="'true'"/>
-        <xsl:attribute name="NV" select="'7701003'"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <!-- Only transform dateTime values that are specified at least to the minute and have a timezone -->
+    <xsl:if test="matches($hl7DateTime, '^([0-9]{12}|[0-9]{14}(\.[0-9]+)?)([+-][0-9]{4})$')">
+      <!-- Add "00" seconds if seconds are missing -->
+      <xsl:variable name="fullDateTime" select="replace($hl7DateTime, '^([0-9]{12})([+-][0-9]{4})$', '$100$2')"/>
+      <xsl:value-of select="xs:dateTime(replace($fullDateTime, '^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})?(\.[0-9]+)?([+-])([0-9]{2})([0-9]{2})$','$1-$2-$3T$4:$5:$6$7$8$9:$10'))"/>
+    </xsl:if>
   </xsl:function>
   
   <xsl:function name="n:date">
     <xsl:param name="hl7Date"/>
-    <xsl:choose>
-      <!-- Only transform date values that are specified at least to the day -->
-      <xsl:when test="matches($hl7Date, '^[0-9]{8}')">
-        <xsl:value-of select="replace($hl7Date, '^([0-9]{4})([0-9]{2})([0-9]{2})(.*)$','$1-$2-$3')"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="xsi:nil" select="'true'"/>
-        <xsl:attribute name="NV" select="'7701003'"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <!-- Only transform date values that are specified at least to the day -->
+    <xsl:if test="matches($hl7Date, '^[0-9]{8}')">
+      <xsl:value-of select="xs:date(replace($hl7Date, '^([0-9]{4})([0-9]{2})([0-9]{2})(.*)$','$1-$2-$3'))"/>
+    </xsl:if>
   </xsl:function>
 
 

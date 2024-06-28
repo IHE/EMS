@@ -6,7 +6,7 @@
 	<templateId root="2.16.840.1.113883.10.20.22.1.8" extension="2015-08-01"/>
 	<id extension="DS3489" root="2.16.840.1.113883.19.5.99999.1"/>
 	<code codeSystem="2.16.840.1.113883.6.1" code="18842-5" displayName="Discharge summary"/>
-  <title>Sample Discharge Summary for EMS Interoperability</title>
+  <title>Sample Inpatient Discharge Summary for EMS Interoperability</title>
   <effectiveTime value="202401151250-0700"/>
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
   <languageCode code="en-US"/>
@@ -133,11 +133,12 @@
 	<componentOf>
 		<encompassingEncounter>
 			<id root="2.16.840.1.113883.19" extension="I84372"/>
+      <code codeSystem="2.16.840.1.113883.1.11.13955" code="IMP" displayName="inpatient encounter"/>
 			<effectiveTime>
 				<low value="202401072034-0700"/>
 				<high value="202401091032-0700"/>
 			</effectiveTime>
-			<dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5" code="01" displayName="	Discharged to home care or self care (routine discharge)"/>
+			<dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5" code="01" displayName="Discharged to home care or self care (routine discharge)"/>
 		</encompassingEncounter>
 	</componentOf>
   <component>
@@ -199,7 +200,7 @@
                       <code codeSystem="2.16.840.1.113883.6.101" code="207Q00000X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine"/>
                     </assignedAuthor>
                   </author>
-                      <participant typeCode="CSM">
+                  <participant typeCode="CSM">
                     <participantRole classCode="MANU">
                       <playingEntity classCode="MMAT">
                         <code nullFlavor="NA"/>
@@ -267,7 +268,7 @@
                     <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
                   </code>
                   <text>
-                    <reference value="#DischargeDx_1" />
+                    <reference value="#DischargeDx_1"/>
                   </text>
                   <statusCode code="completed"/>
                   <effectiveTime>
@@ -300,7 +301,7 @@
                     <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
                   </code>
                   <text>
-                    <reference value="#DischargeDx_2" />
+                    <reference value="#DischargeDx_2"/>
                   </text>
                   <statusCode code="completed"/>
                   <effectiveTime>
@@ -464,12 +465,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ID="AsmissionDx_1">
+								<tr ID="AdmissionDx_1">
 									<td>Laceration of abdominal wall, Right upper quadrant</td>
 									<td>January 7, 2024, 19:30 MST</td>
 									<td></td>
 								</tr>
-								<tr ID="AsmissionDx_2">
+								<tr ID="AdmissionDx_2">
 									<td>Concussion with loss of consciousness</td>
 									<td>January 7, 2024, 19:30 MST</td>
 									<td></td>
@@ -491,7 +492,7 @@
                     <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
                   </code>
                   <text>
-                    <reference value="#AsmissionDx_1" />
+                    <reference value="#AdmissionDx_1"/>
                   </text>
                   <statusCode code="completed"/>
                   <effectiveTime>
@@ -523,7 +524,7 @@
                     <translation codeSystem="2.16.840.1.113883.6.1" code="75323-6" displayName="Condition"/>
                   </code>
                   <text>
-                    <reference value="#AdmissionDx_2" />
+                    <reference value="#AdmissionDx_2"/>
                   </text>
                   <statusCode code="completed"/>
                   <effectiveTime>
@@ -625,7 +626,7 @@
                   <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
                 </assignedAuthor>
               </author>
-        </procedure>
+            </procedure>
 					</entry>
 					<entry typeCode="DRIV">
 						<observation classCode="OBS" moodCode="EVN">
