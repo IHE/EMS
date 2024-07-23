@@ -1,19 +1,15 @@
-# HL7 C-CDA R2.1 Discharge Summary to NEMSIS v3.5.0 Outcome Transformation
+# HL7 C-CDA R2.1 Continuity of Care Document to NEMSIS v3.5.0 Outcome Transformation
 
-This transformation is used to transform content from an [HL7 C-CDA R2.1 Discharge Summary](https://www.hl7.org/ccdasearch/templates/2.16.840.1.113883.10.20.22.1.8.html) document representing a hospital emergency department or inpatient encounter that occurred as a result of an EMS transport into the [eOutcome](https://nemsis.org/media/nemsis_v3/release-3.5.0/DataDictionary/PDFHTML/EMSDEMSTATE/sections/eOutcome.002.xml) section of a NEMSIS v3.5.0 EMSDataSet document.
+This transformation is used to transform content from an [HL7 C-CDA R2.1 Continuity of Care Document](https://www.hl7.org/ccdasearch/templates/2.16.840.1.113883.10.20.22.1.2.html) document representing hospital emergency department and inpatient encounters that occurred as a result of an EMS transport into the [eOutcome](https://nemsis.org/media/nemsis_v3/release-3.5.0/DataDictionary/PDFHTML/EMSDEMSTATE/sections/eOutcome.002.xml) section of a NEMSIS v3.5.0 EMSDataSet document.
 
 ## Files
 
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0.xsl](C-CDA-R2.1_DS_to_NEMSIS-3.5.0.xsl)**
+* **[C-CDA-R2.1_CCD_to_NEMSIS-3.5.0.xsl](C-CDA-R2.1_CCD_to_NEMSIS-3.5.0.xsl)**
   * The XML Style Sheet Language Transformation (XSLT) file.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_In.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_In.xml)**
-  * Sample Discharge Summary document representing a hospital emergency department encounter following EMS transport.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_Out.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_Out.xml)**
-  * Sample NEMSIS output resulting from applying the transformation to the sample emergency department Discharge Summary document.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_In.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_In.xml)**
-  * Sample Discharge Summary document representing a hospital inpatient encounter following EMS transport.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_Out.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_Out.xml)**
-  * Sample NEMSIS output resulting from applying the transformation to the sample inpatient Discharge Summary document.
+* **[C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_In.xml](C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_In.xml)**
+  * Sample Continuity of Care Document representing a hospital emergency department encounter following EMS transport.
+* **[C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_Out.xml](C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_Out.xml)**
+  * Sample NEMSIS output resulting from applying the transformation to the sample emergency department Continuity of Care Document.
 
 ## Transformation Notes
 
@@ -21,7 +17,13 @@ This product is provided by the NEMSIS TAC, without charge, to facilitate a data
 
 The resulting document is not valid per the NEMSIS 3.5.0 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome section.
 
-This stylesheet assumes the document to be transformed is a C-CDA v2.1 Discharge Summary representing a hospital emergency department or inpatient encounter.
+This stylesheet assumes the document to be transformed is a C-CDA v2.1 Continuity of Care Document containing a hospital emergency department or inpatient encounter or both.
+
+### Parameters
+
+* **startDateTime** (optional)
+  Format: `YYYYMMDD` or `YYYYMMDDHHMM` or `YYYYMMDDHHMMSS`
+  For best results, call this stylesheet with a value for this parameter, which should represent the date/time EMS transferred patient care to the hospital. This stylesheet will select the first emergency department encounter and the first inpatient encounter that occurred after the requested date/time to populate the NEMSIS eOutcome elements. If this parameter is not provided, the stylesheet will use `serviceEvent/effectiveTime/low` from the CCD instead. Depending on how the CCD was generated, it may include encounters that occurred earlier or later than the time frame relevant to the EMS incident.
 
 ### ePatient
 
@@ -48,7 +50,7 @@ Patient's Home Address, City, State, ZIP Code, and Country could also be mapped,
 
 This transformation generates a complete NEMSIS `eOutcome` section, filling in "Not Values" where data are not available in the C-CDA document.
 
-Determine the encounter type from `ClinicalDocument/componentOf/encompassingEncounter/code/@code`. The value `EMER` is considered an emergency department encounter; any other value is considered an inpatient encounter. This affects which of several data elements in the `eOutcome` section are populated by the transformation.
+The **emergency department encounter** is the first encounter (chronologically) where `effectiveTime/low` is after `$startDateTime` and `code` contains one of several CPT codes that represent an emergency department visit. The **inpatient encounter** is the first encounter (chronologically) where `effectiveTime/low` is after `$startDateTime` and `code` contains one of several CPT codes that represent an inpatient visit. The codes are listed in the `$encType` variable in the transformation.
 
 * **eOutcome.01 - Emergency Department Disposition**
   HL7 recommends using NUBC UB-04 FL17 Patient Status (2.16.840.1.113883.3.88.12.80.33) but also allows other code sets, such as Discharge Disposition (HL7) (2.16.840.1.113883.12.112). NEMSIS supports a subset of those code sets. Map the code if it is supported by NEMSIS. This translation could be improved by mapping non-NEMSIS-supported codes to NEMSIS-supported codes. For example, all codes in the 30s could be mapped to "30", since they represent variations of "Still a Patient".
@@ -58,19 +60,20 @@ Determine the encounter type from `ClinicalDocument/componentOf/encompassingEnco
   * **eOutcome.03 - External Report ID/Number Type**
     Coded to "Hospital-Receiving".
   * **eOutcome.04 - External Report ID/Number**
-    NEMSIS does not specify which of the several identifiers available in a C-CDA document should be used for External Report ID/Number. This transformation uses `encompassingEncounter/id/@extension`. Other options include:
+    NEMSIS does not specify which of the several identifiers available in a C-CDA document should be used for External Report ID/Number. This transformation uses `encounter/id/@extension`. Other options include:
     * `ClinicalDocument/recordTarget/patientRole/id`: Patient identifiers
     * `ClinicalDocument/id`: The clinical document instance identifier
     * `ClinicalDocument/setId`: The clinical document set identifier
     It may be desirable to include `@root`, in the format "`{@root}^{@extension}`", to generate an identifier that includes the Hospital's OID (to make it universally unique).
 * **eOutcome.EmergencyDepartmentProceduresGroup**
+  Process procedures where `entryRelationship/encounter/id` references the `id` of the emergency department encounter or where `effectiveTime` is within the `effectiveTime` of the emergency department encounter.
   * **eOutcome.09 - Emergency Department Procedures**
   NEMSIS only supports ICD-10-PCS, so only process procedures with ICD-10 codes provided, which may come from `code` or `code/translation`.
   * **eOutcome.19 - Date/Time Emergency Department Procedure Performed**
   Select the date/time the procedure was performed (when single timestamp is provided) or completed (`high` timestamp when `low`/`high` are provided).
 * **eOutcome.10 - Emergency Department Diagnosis**
-  Process Admission Diagnoses, Discharge Diagnoses, and Problems.
-  If a diagnosis does not have a documented `effectiveTime/low` that is within one day prior to the date of `effectiveTime/low` of the `encompassingEncounter` (or later), exclude it.
+  Process Encounter Diagnoses from the emergency department encounter and Problems that were documented during the emergency department encounter.
+  If a diagnosis does not have a documented `effectiveTime/low` that is within one day prior to the date of `effectiveTime/low` of the `encounter` (or later), exclude it.
   NEMSIS only supports ICD-10-CM, so only process diagnoses with ICD-10 codes provided, which may come from `code` or `code/translation`.
   This transformation de-duplicates diagnosis codes (if the same diagnosis code is recorded more than once, it is only generated once in the output).
 * **eOutcome.11 - Date/Time of Hospital Admission**

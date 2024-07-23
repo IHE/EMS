@@ -1,0 +1,1577 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <realmCode code="US"/>
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01"/>
+  <templateId root="2.16.840.1.113883.10.20.22.1.2" extension="2015-08-01"/>
+  <id extension="CCD43110-1" root="2.16.840.1.113883.19.5.99999.1"/>
+  <code codeSystem="2.16.840.1.113883.6.1" code="34133-9" displayName="Summary of episode note"/>
+  <title>Sample Emergency Department and Inpatient Continuity of Care Document for EMS Interoperability</title>
+  <effectiveTime value="202404172117-0600"/>
+  <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N" displayName="normal"/>
+  <languageCode code="en-US"/>
+  <setId extension="sCCD43110" root="2.16.840.1.113883.19.5.99999.19"/>
+  <versionNumber value="1"/>
+  <recordTarget>
+    <patientRole>
+      <id assigningAuthorityName="Sample Hospital" root="2.16.840.1.113883.19.5.99999.2" extension="96322"/>
+      <id assigningAuthorityName="US Social Security Administration" root="2.16.840.1.113883.4.1" extension="222-00-5682"/>
+      <addr use="HP">
+        <streetAddressLine>3844 S 4535 W St</streetAddressLine>
+        <city>West Valley City</city>
+        <state>UT</state>
+        <postalCode>84120</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom value="tel:(801)468-1581" use="HP"/>
+      <telecom value="tel:+1-801-334-8733" use="MC"/>
+      <patient>
+        <name use="L">
+          <given>Minnie</given>
+          <given>Cullen</given>
+          <family>Hessel</family>
+        </name>
+        <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="F" displayName="Female"/>
+        <birthTime value="19381202"/>
+        <maritalStatusCode codeSystem="2.16.840.1.113883.5.2" code="W" displayName="Widowed"/>
+        <raceCode codeSystem="2.16.840.1.113883.6.238" code="2106-3" displayName="White"/>
+        <ethnicGroupCode codeSystem="2.16.840.1.113883.6.238" code="2186-5" displayName="Not Hispanic or Latino"/>
+        <languageCommunication>
+          <languageCode code="en"/>
+          <proficiencyLevelCode codeSystem="2.16.840.1.113883.5.61" code="E" displayName="Excellent"/>
+          <preferenceInd value="true"/>
+        </languageCommunication>
+        </patient>
+      </patientRole>
+  </recordTarget>
+  <author>
+    <time value="202404172117-0600"/>
+    <assignedAuthor>
+      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+      <code codeSystem="2.16.840.1.113883.6.101" code="282N00000X" displayName="Hospitals; General Acute Care Hospital"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Walt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedPerson>
+        <name>
+          <given>Carter</given>
+          <family>Schaefer</family>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <author>
+    <time value="202404172117-0600"/>
+    <assignedAuthor>
+      <id nullFlavor="NI"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Salt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedAuthoringDevice>
+        <manufacturerModelName>Sample EHR Vendor</manufacturerModelName>
+        <softwareName>Sample EHR Software</softwareName>
+      </assignedAuthoringDevice>
+      <representedOrganization>
+        <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+        <name>Sample Hospital</name>
+        <telecom use="WP" value="tel:+1-801-213-3930"/>
+        <addr use="WP">
+          <streetAddressLine>295 Chipeta Way</streetAddressLine>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postalCode>84108</postalCode>
+          <country>US</country>
+        </addr>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+        <name>Sample Hospital</name>
+        <telecom use="WP" value="tel:+1-801-213-3930"/>
+        <addr use="WP">
+          <streetAddressLine>295 Chipeta Way</streetAddressLine>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postalCode>84108</postalCode>
+          <country>US</country>
+        </addr>
+        </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <legalAuthenticator>
+    <time value="202404172117-0600"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id root="2.16.840.1.113883.4.6" extension="99999999999"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Salt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedPerson>
+        <name>
+          <given>Carter</given>
+          <family>Schaefer</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </legalAuthenticator>
+  <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime xsi:type="IVL_TS">
+        <low value="202404101005-0600"/>
+        <high value="202404172117-0600"/>
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <assignedEntity>
+          <id root="2.16.840.1.113883.4.6" extension="99999999995"/>
+          <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+          <addr use="WP">
+            <streetAddressLine>295 Chipeta Way</streetAddressLine>
+            <city>Salt Lake City</city>
+            <state>UT</state>
+            <postalCode>84108</postalCode>
+            <country>US</country>
+          </addr>
+          <telecom use="WP" value="tel:+1-801-213-3930"/>
+          <assignedPerson>
+            <name>
+              <given>Watson</given>
+              <family>Brakus</family>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+      <performer typeCode="PRF">
+        <assignedEntity>
+          <id root="2.16.840.1.113883.4.6" extension="99999999994"/>
+          <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+          <addr use="WP">
+            <streetAddressLine>295 Chipeta Way</streetAddressLine>
+            <city>Salt Lake City</city>
+            <state>UT</state>
+            <postalCode>84108</postalCode>
+            <country>US</country>
+          </addr>
+          <telecom use="WP" value="tel:+1-801-213-3930"/>
+          <assignedPerson>
+            <name>
+              <given>Linnea</given>
+              <family>Waters</family>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <component>
+    <structuredBody>
+      <!-- Allergies and Intolerances Section (entries required) (V3) -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="48765-2" displayName="Allergies and adverse reactions"/>
+          <title>Allergies and Intolerances</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Substance</th>
+                  <th>Reaction</th>
+                  <th>Criticality</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td ID="MedicationAllergy_1">Iodinated contrast media</td>
+                  <td ID="Reaction_1">Urticaria</td>
+                  <td ID="Criticality_1">Low</td>
+                </tr>
+              </tbody>
+            </table>
+        </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" extension="2015-08-01"/>
+              <id root="f12c0ea0-134c-47a3-8e6a-e2e6487d8680"/>
+              <code codeSystem="2.16.840.1.113883.5.6" code="CONC"/>
+              <text>
+                <reference value="#MedicationAllergy_1"/>
+              </text>
+              <statusCode code="active"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20180918"/>
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="201809181826-0600"/>
+                <assignedAuthor>
+                  <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                  <telecom use="WP" value="tel:801-553-0189"/>
+                  <assignedPerson>
+                    <name>
+                      <given>Jessika</given>
+                      <family>Harber</family>
+                    </name>
+                  </assignedPerson>
+                </assignedAuthor>
+              </author>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
+                  <id root="4b1a6ee2-73e4-4c0f-ba1c-e0ebce67406e"/>
+                  <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                  <text>
+                    <reference value="#MedicationAllergy_1"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20180917"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="59037007" displayName="Intolerance to drug (finding)"/>
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="201809181826-0600"/>
+                    <assignedAuthor>
+                      <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code codeSystem="2.16.840.1.113883.6.96" code="426722004" displayName="Iodinated contrast media (substance)">
+                          <originalText>
+                            <reference value="#MedicationAllergy_1"/>
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
+                      <id root="efac1a34-1761-4369-8b4d-692702a85e29"/>
+                      <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                      <text>
+                        <reference value="#Reaction_1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime xsi:type="IVL_TS">
+                        <low value="20180917"/>
+                        <high value="20180918"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="126485001" displayName="Urticaria (disorder)"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.145"/>
+                      <code codeSystem="2.16.840.1.113883.6.1" code="82606-5" displayName="Criticality"/>
+                      <text>
+                        <reference value="#Criticality_1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1063" code="CRITL" displayName="low criticality"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+      </section>
+      </component>
+      <!-- Medications Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="10160-0" displayName="History of Medication use Narrative"/>
+          <title>History of Medication Use</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Medication</th>
+                  <th>Instructions</th>
+                  <th>Dosage</th>
+                  <th>Effective Dates (start - stop)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="Medication_1">
+                  <td>Hydralazine hydrochloride 25 MG Oral Tablet</td>
+                  <td>Take 1 tablet QID</td>
+                  <td>25 MG</td>
+                  <td>July 6, 2014 - </td>
+                  <td>Active</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+              <id root="e70ccbaa-8ee9-4989-bcdc-e00695a89310"/>
+              <statusCode code="active"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20140706"/>
+              </effectiveTime>
+              <effectiveTime xsi:type="EIVL_TS" operator="A">
+                <offset value="6" unit="h"/>
+              </effectiveTime>
+              <routeCode codeSystem="2.16.840.1.113883.3.26.1.1" code="C38288" displayName="Oral Route of Administration">
+                <translation codeSystem="2.16.840.1.113883.6.96" code="26643006" displayName="Oral route (qualifier value)"/>
+              </routeCode>
+              <doseQuantity value="1"/>
+              <consumable>
+                <manufacturedProduct classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+                  <id root="1dfe3fee-307a-4f30-be3d-575e5f5b512e"/>
+                  <manufacturedMaterial>
+                    <code codeSystem="2.16.840.1.113883.6.88" code="905225" displayName="hydralazine hydrochloride 25 MG Oral Tablet"/>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="201407060856-0600"/>
+                <assignedAuthor>
+                  <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                </assignedAuthor>
+              </author>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <!-- Problem Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="11450-4" displayName="Problem list"/>
+          <title>Problem List</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Problem</th>
+                  <th>Onset</th>
+                  <th>Resolution</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="Problem_1">
+                  <td>Essential hypertension</td>
+                  <td>2014</td>
+                  <td></td>
+                  <td>Active</td>
+                </tr>
+                <tr ID="Problem_2">
+                  <td>Psoriasis</td>
+                  <td>2017</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2015-08-01"/>
+              <id root="821ea4f7-8d69-4019-ac25-697da7bba155"/>
+              <code codeSystem="2.16.840.1.113883.5.6" code="CONC"/>
+              <statusCode code="active"/>
+              <effectiveTime  xsi:type="IVL_TS">
+                <low value="2014"/>
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="201407060856-0600"/>
+                <assignedAuthor>
+                  <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                </assignedAuthor>
+              </author>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                  <id root="36734bef-9366-4276-8ff9-d5367ebaa41f"/>
+                  <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem">
+                    <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                  </code>
+                  <text>
+                    <reference value="#Problem_1"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime  xsi:type="IVL_TS">
+                    <low value="2014"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension (disorder)" code="59621000">
+                    <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="I10" displayName="Essential (primary) hypertension"/>
+                  </value>
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="201407060856-0600"/>
+                    <assignedAuthor>
+                      <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+                  <id root="409a3b23-4c79-4d5b-b686-6be6558b7718"/>
+                  <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem">
+                    <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                  </code>
+                  <text>
+                    <reference value="#Problem_2"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime  xsi:type="IVL_TS">
+                    <low value="2017"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" displayName="Psoriasis (disorder)" code="9014002">
+                    <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="L40.9" displayName="Psoriasis, unspecified"/>
+                  </value>
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="201710051802-0600"/>
+                    <assignedAuthor>
+                      <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!-- Procedures Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="47519-4" displayName="History of procedures"/>
+          <title>Procedures</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Date/Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="Procedure_1">
+                  <td>Plain X-ray of left hip</td>
+                  <td>April 10, 2024, 10:25 - 10:36 MDT</td>
+                  <td>Completed</td>
+                </tr>
+                <tr ID="Procedure_2">
+                  <td>Internal fixation of femur</td>
+                  <td>April 11, 2024, 08:30 - 11:42 MDT</td>
+                  <td>Completed</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.13"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.13" extension="2014-06-09"/>
+              <id root="5130ed99-b304-4e6d-b78b-f9c55f3ca6db"/>
+              <code codeSystem="2.16.840.1.113883.6.96" code="3641000087103" displayName="Plain X-ray of left hip (procedure)">
+                <originalText>
+                  <reference value="#Procedure_1"/>
+                </originalText>
+                <translation codeSystem="2.16.840.1.113883.6.4" code="BQ01ZZZ" displayName="Plain Radiography of Left Hip"/>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="202404101025-0600"/>
+                <high value="202404101036-0600"/>
+              </effectiveTime>
+              <value xsi:type="ED" nullFlavor="NA"/>
+              <targetSiteCode codeSystem="2.16.840.1.113883.6.96" code="362905007" displayName="Entire left hip joint (body structure)"/>
+              <performer>
+                <assignedEntity>
+                  <id root="2.16.840.1.113883.4.6" extension="99999999999"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                  <representedOrganization>
+                    <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                    <name>Sample Hospital</name>
+                    <telecom use="WP" value="tel:+1-801-213-3930"/>
+                    <addr use="WP">
+                      <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                      <city>Salt Lake City</city>
+                      <state>UT</state>
+                      <postalCode>84108</postalCode>
+                      <country>US</country>
+                    </addr>
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404101038-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                </assignedAuthor>
+              </author>
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                  <code codeSystem="2.16.840.1.113883.6.259" displayName="Emergency Department" code="1108-0"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="COMP" inversionInd="true">
+                <encounter classCode="ENC" moodCode="EVN">
+                  <id root="2.16.840.1.113883.19" extension="E30064"/>
+                </encounter>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2022-06-01"/>
+              <id root="3b92f321-9ed0-48be-804e-9140cf2c58d0"/>
+              <code codeSystem="2.16.840.1.113883.6.96" code="86975004" displayName="Internal fixation of femur (procedure)">
+                <originalText>
+                  <reference value="#Procedure_2"/>
+                </originalText>
+                <translation codeSystem="2.16.840.1.113883.6.4" code="0QS704Z" displayName="Reposition Left Upper Femur with Internal Fixation Device, Open Approach"/>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="202404110830-0600"/>
+                <high value="202404111142-0600"/>
+              </effectiveTime>
+              <targetSiteCode codeSystem="2.16.840.1.113883.6.96" code="773966005" displayName="Structure of head of left femur (body structure)"/>
+              <performer>
+                <assignedEntity>
+                  <id root="2.16.840.1.113883.4.6" extension="99999999999"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                  <representedOrganization>
+                    <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+                    <name>Sample Hospital</name>
+                    <telecom use="WP" value="tel:+1-801-213-3930"/>
+                    <addr use="WP">
+                      <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                      <city>Salt Lake City</city>
+                      <state>UT</state>
+                      <postalCode>84108</postalCode>
+                      <country>US</country>
+                    </addr>
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404110805-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                  <code codeSystem="2.16.840.1.113883.6.259" displayName="Surgical Ward" code="1072-8"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="COMP" inversionInd="true">
+                <encounter classCode="ENC" moodCode="EVN">
+                  <id root="2.16.840.1.113883.19" extension="E30079"/>
+                </encounter>
+              </entryRelationship>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+                  <id root="918b92d2-1d55-47a9-a420-dd327801b692"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="202404110842-0600"/>
+                    <high value="202404111119-0600"/>
+                  </effectiveTime>
+                  <effectiveTime xsi:type="PIVL_TS" operator="A"/>
+                  <routeCode codeSystem="2.16.840.1.113883.3.26.1.1" code="C38210" displayName="	Epidural Route of Administration">
+                    <translation codeSystem="2.16.840.1.113883.6.96" code="404820008" displayName="Epidural route (qualifier value)"/>
+                  </routeCode>
+                  <doseQuantity value="1"/>
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+                      <id root="d806600e-d93a-4cce-b5a3-f0dfb6907679"/>
+                      <manufacturedMaterial>
+                        <code codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="10 ML lidocaine hydrochloride 20 MG/ML Injection" code="1737763"/>
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                  <author>
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404110805-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                    </assignedAuthor>
+                  </author>
+                </substanceAdministration>
+              </entryRelationship>
+            </procedure>
+          </entry>
+        </section>
+      </component>
+      <!-- Results Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="30954-2" displayName="Relevant diagnostic tests/laboratory data Narrative"/>
+          <title>Results</title>
+          <text>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Value / Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="Result1">
+                  <td>Plain X-ray of left hip</td>
+                  <td ID="Result1OriginalText">Fracture of head of femur</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2023-05-01"/>
+              <id root="118e14bd-9eff-4983-908f-00ed0e644914"/>
+              <code codeSystem="2.16.840.1.113883.6.96" code="3641000087103" displayName="Plain X-ray of left hip (procedure)"/>
+              <statusCode code="completed"/>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404101038-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                </assignedAuthor>
+              </author>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2023-05-01"/>
+                  <id root="7d26f490-61e9-48eb-916b-d913bdedb9bf"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="26131-3" displayName="XR Hip - left Views" />
+                  <text>
+                    <reference value="#Result1"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404101038-0600"/>
+                  <value xsi:type="ED">
+                    <reference value="#Result1OriginalText"/>
+                  </value>
+                  <interpretationCode codeSystem="2.16.840.1.113883.5.83" displayName="Abnormal" code="A"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404101038-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                  <referenceRange>
+                    <observationRange>
+                      <text>Abnormal</text>
+                      <value xsi:type="PQ" nullFlavor="NA"/>
+                      <interpretationCode codeSystem="2.16.840.1.113883.5.83" displayName="Abnormal" code="A"/>
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <!-- Encounters Section -->
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.22" extension="2015-08-01"/>
+					<code codeSystem="2.16.840.1.113883.6.1" code="46240-8" displayName="History of Hospitalizations+Outpatient visits Narrative"/>
+					<title>Encounters</title>
+					<text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Encounter Type</th>
+                  <th>Diagnoses</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Discharge Disposition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="Enc1">
+                  <td ID="Enc1_Type">Emergency Department</td>
+                  <td>
+                    <content ID="Enc1_Dx1">Pain of left hip joint</content> 
+                    <content ID="Enc1_Dx2">Contusion of left hip region</content> 
+                    <content ID="Enc1_Dx3">Deformity of hip joint</content> 
+                  </td>
+                  <td>April 10, 2024, 10:09 MDT</td>
+                  <td>April 10, 2024, 11:08 MDT</td>
+                  <td>Admitted as Inpatient</td>
+                </tr>
+                <tr ID="Enc2">
+                  <td ID="Enc2_Type">Emergency Department</td>
+                  <td>
+                    <content ID="Enc2_Dx1">Laceration of left thigh</content> 
+                    <content ID="Enc2_Dx2">Deformity of hip joint</content> 
+                    <content ID="Enc2_Dx3">Open fracture of head of left femur</content> 
+                  </td>
+                  <td>April 10, 2024, 11:16 MDT</td>
+                  <td>April 14, 2024, 09:18 MDT</td>
+                  <td>Transferred to Intermediate Care Facility</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
+              <id root="2.16.840.1.113883.19" extension="E30064"/>
+              <code codeSystem="2.16.840.1.113883.6.12" code="99284" displayName="Emergency department visit for the evaluation and management of a patient, which requires a medically appropriate history and/or examination and moderate level of medical decision making">
+                  <originalText>
+                    <reference value="#Enc1_Type"/>
+                  </originalText>
+              </code>
+              <text>
+                <reference value="#Enc1"/>
+              </text>
+              <effectiveTime>
+                <low value="202404101009-0600"/>
+                <high value="202404101108-0600"/>
+              </effectiveTime>
+              <sdtc:dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5" code="09" displayName="Admitted as an inpatient to this hospital"/>
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                  <code codeSystem="2.16.840.1.113883.6.259" displayName="Emergency Department" code="1108-0"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="c03e57bb-de15-415b-9e4f-b21c5497ed58"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem (finding)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                      </code>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="202404100830-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="284154007" displayName="Difficulty moving leg (finding)"/>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101018-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="8a66fc71-49d9-421a-8bef-a2a717abd1a8"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem (finding)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                      </code>
+                      <text>
+                        <reference value="#Enc1_Dx1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="202404100830-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="316781000119100" displayName="Pain of left hip joint (finding)">
+                        <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="M25.552" displayName="Pain in left hip"/>
+                      </value>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101018-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="d287b5d5-54cf-4ff1-81ac-52c0a313c4ae"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem (finding)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                      </code>
+                      <text>
+                        <reference value="#Enc1_Dx2"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="202404100900-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="11786921000119102" displayName="Contusion of left hip region (disorder)">
+                        <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S70.02XA" displayName="Contusion of left hip, initial encounter"/>
+                      </value>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101018-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="8cd7f9e6-8a05-45b2-ab0a-def464c6e10e"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem (finding)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                      </code>
+                      <text>
+                        <reference value="#Enc1_Dx3"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="202404100830-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="299233007" displayName="Deformity of hip joint (finding)">
+                        <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="M21.952" displayName="Unspecified acquired deformity of left thigh"/>
+                      </value>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101022-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+            </encounter>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
+              <id root="2.16.840.1.113883.19" extension="E30079"/>
+              <code codeSystem="2.16.840.1.113883.6.12" code="99222" displayName="Initial hospital inpatient or observation care, per day, for the evaluation and management of a patient, which requires a medically appropriate history and/or examination and moderate level of medical decision making. When using total time on the date of the encounter for code selection, 55 minutes must be met or exceeded.">
+                <originalText>
+                  <reference value="#Enc2"/>
+                </originalText>
+              </code>
+              <effectiveTime>
+                <low value="202404101116-0600"/>
+                <high value="202404140918-0600"/>
+              </effectiveTime>
+              <sdtc:dischargeDispositionCode codeSystem="2.16.840.1.113883.6.301.5" code="04" displayName="Discharged/transferred to an intermediate care facility (ICF)"/>
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                  <code codeSystem="2.16.840.1.113883.6.259" displayName="Surgical Ward" code="1072-8"/>
+                  <addr use="WP">
+                    <streetAddressLine>295 Chipeta Way</streetAddressLine>
+                    <city>Salt Lake City</city>
+                    <state>UT</state>
+                    <postalCode>84108</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-801-213-3930"/>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="bcc7082c-35cc-4d02-b0ea-64ec6345744c"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem (finding)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                      </code>
+                      <text>
+                        <reference value="#Enc2_Dx1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="20240410030-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="10963791000119109" displayName="Laceration of left thigh (disorder)">
+                        <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S71.112A" displayName="Laceration without foreign body, left thigh, initial encounter"/>
+                      </value>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101121-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="1f15bced-dbe1-4931-bbc5-9d8c79197eb2"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="55607006" displayName="Problem (finding)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="75326-9" displayName="Problem"/>
+                      </code>
+                      <text>
+                        <reference value="#Enc2_Dx2"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="202404100830-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="299233007" displayName="Deformity of hip joint (finding)">
+                        <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="M21.952" displayName="Unspecified acquired deformity of left thigh"/>
+                      </value>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101121-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2022-06-01"/>
+                      <id root="9b7df69e-e131-4df6-9d7e-f82f0e3a0878"/>
+                      <code codeSystem="2.16.840.1.113883.6.96" code="282291009" displayName="Diagnosis interpretation (observable entity)">
+                        <translation codeSystem="2.16.840.1.113883.6.1" code="29308-4" displayName="Diagnosis"/>
+                      </code>
+                      <statusCode code="completed"/>
+                      <effectiveTime  xsi:type="IVL_TS">
+                        <low value="202404100830-0600"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="15911931000119102" displayName="Open fracture of head of left femur (disorder)">
+                        <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="S72.012B" displayName="Unspecified intracapsular fracture of left femur, initial encounter for open fracture type I or II"/>
+                      </value>
+                      <author typeCode="AUT">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="202404101203-0600"/>
+                        <assignedAuthor>
+                          <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                          <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                        </assignedAuthor>
+                      </author>
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+            </encounter>
+          </entry>
+				</section>
+			</component>
+      <!-- Plan of Treatment Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.10"/>
+          <templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="18776-5" displayName="Plan of care note"/>
+          <title>Plan of Treatment</title>
+          <text>
+            <list>
+              <item ID="Plan_1">Physical Therapy</item>
+              <item ID="Plan_2">Occupational Therapy</item>
+              <item ID="Plan_3">Medication: ibuprofen 600 MG Oral Tablet, 1 tablet every 6 hours PRN</item>
+            </list>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="INT">
+              <templateId root="2.16.840.1.113883.10.20.22.4.39"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.39" extension="2014-06-09"/>
+              <id root="f25ee31d-57a1-4b47-93ab-21408b476e23"/>
+              <code codeSystem="2.16.840.1.113883.6.96" code="91251008" displayName="Physical therapy procedure (regime/therapy)"/>
+              <text>
+                <reference value="#Plan_1"/>
+              </text>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="20240415"/>
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404101203-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="INT">
+              <templateId root="2.16.840.1.113883.10.20.22.4.39"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.39" extension="2014-06-09"/>
+              <id root="25202adb-29d9-44a2-9069-60596732eebc"/>
+              <code codeSystem="2.16.840.1.113883.6.96" code="84478008" displayName="Occupational therapy (regime/therapy)"/>
+              <text>
+                <reference value="#Plan_2"/>
+              </text>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="20240422"/>
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404101203-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <substanceAdministration classCode="SBADM" moodCode="INT">
+              <templateId root="2.16.840.1.113883.10.20.22.4.42"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.42" extension="2014-06-09"/>
+              <id root="206075c0-d590-4e9a-a31e-08dc7532d5eb"/>
+              <text>
+                <reference value="#Plan_3"/>
+              </text>
+              <statusCode code="active"/>
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20240414"/>
+                <high value="20240430"/>
+              </effectiveTime>
+              <effectiveTime xsi:type="PIVL_TS" operator="A">
+                <period value="6" unit="h"/>
+              </effectiveTime>
+              <doseQuantity unit="{#}" value="1"/>
+              <consumable>
+                <manufacturedProduct classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+                  <id root="5e00ec9a-cdce-4684-a1f0-0ff38e14153b"/>
+                  <manufacturedMaterial>
+                    <code codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="ibuprofen 600 MG Oral Tablet" code="197806"/>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404140837-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <!-- Social History Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.17"/>
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" code="29762-2" displayName="Social history Narrative"/>
+          <title>Social History</title>
+          <text>
+            <list>
+              <item ID="SocialHistory1">Smoking Status: Never smoked tobacco</item>
+              <item ID="SocialHistory2">Characteristics of residence: Lives with daughter</item>
+            </list>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.78"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.78" extension="2014-06-09"/>
+              <id root="73dec4a7-adf1-4216-9d06-7ea2b278d587"/>
+              <code codeSystem="2.16.840.1.113883.6.1" code="72166-2" displayName="Tobacco smoking status"/>
+              <text>
+                <reference value="#SocialHistory1"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime value="20180918"/>
+              <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="266919005" displayName="Never smoked tobacco (finding)"/>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="201809181826-0600"/>
+                <assignedAuthor>
+                  <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207QG0300X" displayName="Allopathic &amp; Osteopathic Physicians; Family Medicine, Geriatric Medicine"/>
+                  <telecom use="WP" value="tel:801-553-0189"/>
+                  <assignedPerson>
+                    <name>
+                      <given>Jessika</given>
+                      <family>Harber</family>
+                    </name>
+                  </assignedPerson>
+                </assignedAuthor>
+              </author>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.109"/>
+              <id root="a489d72d-d89e-4db8-920d-1a8080a082c7"/>
+              <code codeSystem="2.16.840.1.113883.6.1" code="75274-1" displayName="Characteristics of residence"/>
+              <text>
+                <reference value="#SocialHistory2"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime value="20240411"/>
+              <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="224135000" displayName="Lives with daughter (finding)"/>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404111623-0700"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.109"/>
+              <id root="3e33fe23-7fb0-4b53-9b47-441b2577930f"/>
+              <code codeSystem="2.16.840.1.113883.6.1" code="75274-1" displayName="Characteristics of residence"/>
+              <text>
+                <reference value="#SocialHistory3"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime value="20240411"/>
+              <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" code="160708008" displayName="Stairs in house (finding)"/>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404111623-0700"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <!-- Vital Signs Section -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.4.1" extension="2015-08-01"/>
+          <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital signs" code="8716-3"/>
+          <title>Vital Signs</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Date/time</th>
+                  <th>Weight</th>
+                  <th>Height</th>
+                  <th>SBP</th>
+                  <th>DBP</th>
+                  <th>HR</th>
+                  <th>RR</th>
+                  <th>SpO2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="vs1">
+                  <td>April 10, 2024, 10:16 MDT</td>
+                  <td ID="vs1_w">58kg</td>
+                  <td ID="vs1_h">160cm</td>
+                  <td ID="vs1_sbp">138mm[Hg]</td>
+                  <td ID="vs1_dbp">86mm[Hg]</td>
+                  <td ID="vs1_hr"></td>
+                  <td ID="vs1_rr"></td>
+                  <td ID="vs1_o2"></td>
+                </tr>
+                <tr ID="vs2">
+                  <td>April 11, 2024, 08:05 MDT</td>
+                  <td ID="vs2_w"></td>
+                  <td ID="vs2_h"></td>
+                  <td ID="vs2_sbp">132mm[Hg]</td>
+                  <td ID="vs2_dbp">85mm[Hg]</td>
+                  <td ID="vs2_hr">72/min</td>
+                  <td ID="vs2_rr">31/min</td>
+                  <td ID="vs2_o2">97%</td>
+                </tr>
+            </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
+              <id root="082cdd37-e007-45a8-b094-69b7ef140a3e"/>
+              <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="46680005" displayName="Vital Signs">
+                <translation codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital signs, weight, height, head circumference, oximetry, BMI, and BSA panel" code="74728-7"/>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime value="202404101016-0600"/>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404101016-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                </assignedAuthor>
+              </author>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="b6eaa83b-643a-40dc-b450-b5cc758785fa"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Body weight" code="29463-7"/>
+                  <text>
+                    <reference value="#vs1_w"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404101016-0600"/>
+                  <value xsi:type="PQ" unit="kg" value="58"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404101016-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="6814e60d-f761-4f5f-ae5e-fadae65c2451"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Body height" code="8302-2"/>
+                  <text>
+                    <reference value="#vs1_h"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404101016-0600"/>
+                  <value xsi:type="PQ" unit="cm" value="160"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404101016-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="11731542-1212-4bca-a8fd-94200763bced"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Systolic blood pressure" code="8480-6"/>
+                  <text>
+                    <reference value="#vs1_sbp"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404101016-0600"/>
+                  <value xsi:type="PQ" unit="mm[Hg]" value="138"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404101016-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="857acaef-9037-4817-9f6a-776e1da89eff"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Diastolic blood pressure" code="8462-4"/>
+                  <text>
+                    <reference value="#vs1_dbp"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404101016-0600"/>
+                  <value xsi:type="PQ" unit="mm[Hg]" value="86"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404101016-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999995"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+          <entry typeCode="DRIV">
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.26"/>
+              <templateId root="2.16.840.1.113883.10.20.22.4.26" extension="2015-08-01"/>
+              <id root="5f25ee7a-f595-4bb2-8684-f8e945d13009"/>
+              <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="46680005" displayName="Vital Signs">
+                <translation codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital signs, weight, height, head circumference, oximetry, BMI, and BSA panel" code="74728-7"/>
+              </code>
+              <statusCode code="completed"/>
+              <effectiveTime value="202404110805-0600"/>
+              <author typeCode="AUT">
+                <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                <time value="202404110805-0600"/>
+                <assignedAuthor>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                  <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                </assignedAuthor>
+              </author>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="f89ee74d-11a2-47e8-993c-b45283d77b1f"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Systolic blood pressure" code="8480-6"/>
+                  <text>
+                    <reference value="#vs2_sbp"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404110805-0600"/>
+                  <value xsi:type="PQ" unit="mm[Hg]" value="132"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404110805-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="dae33cad-d930-4fe7-b6d3-a555ce107fcf"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Diastolic blood pressure" code="8462-4"/>
+                  <text>
+                    <reference value="#vs2_dbp"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404110805-0600"/>
+                  <value xsi:type="PQ" unit="mm[Hg]" value="85"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404110805-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="857acaef-9037-4817-9f6a-776e1da89eff"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Heart rate" code="8867-4"/>
+                  <text>
+                    <reference value="#vs2_hr"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404110805-0600"/>
+                  <value xsi:type="PQ" unit="/min" value="72"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404110805-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="857acaef-9037-4817-9f6a-776e1da89eff"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Respiratory Rate" code="9279-1"/>
+                  <text>
+                    <reference value="#vs2_rr"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404110805-0600"/>
+                  <value xsi:type="PQ" unit="/min" value="31"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404110805-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.27" extension="2014-06-09"/>
+                  <id root="857acaef-9037-4817-9f6a-776e1da89eff"/>
+                  <code codeSystem="2.16.840.1.113883.6.1" displayName="Oxygen saturation in Arterial blood by Pulse oximetry" code="59408-5"/>
+                  <text>
+                    <reference value="#vs2_o2"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="202404110805-0600"/>
+                  <value xsi:type="PQ" unit="%" value="97"/>
+                  <author typeCode="AUT">
+                    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                    <time value="202404110805-0600"/>
+                    <assignedAuthor>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999994"/>
+                      <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
+                    </assignedAuthor>
+                  </author>
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

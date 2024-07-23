@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     This partial NEMSIS 3.5.0 document was generated from an HL7 C-CDA 2.1 Continuity of Care 
+     Document via an XML Stylesheet Language Transformation (XSLT). It is not valid per the NEMSIS 
+     3.5.0 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome 
+     section.
+    -->
+<!--
+        Warning: The startDateTime parameter was not provided. serviceEvent/effectiveTime/low will 
+        be used instead.
+      -->
+<!--
+        Warning: The serviceEvent/effectiveTime/low is more than one month ago. This document may 
+        include information from encounters that occured prior to the relevant EMS incident.
+      -->
+<EMSDataSet xmlns="http://www.nemsis.org"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.0/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
+   <Header>
+      <PatientCareReport>
+         <ePatient>
+            <ePatient.PatientNameGroup>
+               <ePatient.02>Hessel</ePatient.02>
+               <ePatient.03>Minnie</ePatient.03>
+               <ePatient.04>Cullen</ePatient.04>
+            </ePatient.PatientNameGroup>
+            <ePatient.12>222005682</ePatient.12>
+            <ePatient.13>9906001</ePatient.13>
+            <ePatient.14>2514011</ePatient.14>
+            <ePatient.17>1938-12-02</ePatient.17>
+            <ePatient.18 PhoneNumberType="9913003">801-468-1581</ePatient.18>
+         </ePatient>
+         <eOutcome>
+            <eOutcome.01>09</eOutcome.01>
+            <eOutcome.02>04</eOutcome.02>
+            <eOutcome.ExternalDataGroup>
+               <eOutcome.03>4303005</eOutcome.03>
+               <eOutcome.04>E30064</eOutcome.04>
+            </eOutcome.ExternalDataGroup>
+            <eOutcome.ExternalDataGroup>
+               <eOutcome.03>4303005</eOutcome.03>
+               <eOutcome.04>E30079</eOutcome.04>
+            </eOutcome.ExternalDataGroup>
+            <eOutcome.EmergencyDepartmentProceduresGroup>
+               <eOutcome.09>BQ01ZZZ</eOutcome.09>
+               <eOutcome.19>2024-04-10T10:36:00-06:00</eOutcome.19>
+            </eOutcome.EmergencyDepartmentProceduresGroup>
+            <eOutcome.EmergencyDepartmentProceduresGroup>
+               <eOutcome.09>0QS704Z</eOutcome.09>
+               <eOutcome.19>2024-04-11T11:42:00-06:00</eOutcome.19>
+            </eOutcome.EmergencyDepartmentProceduresGroup>
+            <!--Unable to map code 284154007 Difficulty moving leg (finding) from code system 2.16.840.1.113883.6.96.-->
+            <eOutcome.10 xsi:nil="true" NV="7701003"/>
+            <eOutcome.10>M25.552</eOutcome.10>
+            <eOutcome.10>S70.02XA</eOutcome.10>
+            <eOutcome.10>M21.952</eOutcome.10>
+            <eOutcome.11>2024-04-10T11:16:00-06:00</eOutcome.11>
+            <eOutcome.HospitalProceduresGroup>
+               <eOutcome.12>BQ01ZZZ</eOutcome.12>
+               <eOutcome.20>2024-04-10T10:36:00-06:00</eOutcome.20>
+            </eOutcome.HospitalProceduresGroup>
+            <eOutcome.HospitalProceduresGroup>
+               <eOutcome.12>0QS704Z</eOutcome.12>
+               <eOutcome.20>2024-04-11T11:42:00-06:00</eOutcome.20>
+            </eOutcome.HospitalProceduresGroup>
+            <eOutcome.13>S71.112A</eOutcome.13>
+            <eOutcome.13>M21.952</eOutcome.13>
+            <eOutcome.13>S72.012B</eOutcome.13>
+            <eOutcome.16>2024-04-14T09:18:00-06:00</eOutcome.16>
+            <eOutcome.18>2024-04-10T10:09:00-06:00</eOutcome.18>
+         </eOutcome>
+      </PatientCareReport>
+   </Header>
+</EMSDataSet>

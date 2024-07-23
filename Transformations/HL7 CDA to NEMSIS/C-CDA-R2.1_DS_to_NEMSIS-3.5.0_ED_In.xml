@@ -4,13 +4,13 @@
   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
   <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01"/>
   <templateId root="2.16.840.1.113883.10.20.22.1.8" extension="2015-08-01"/>
-  <id extension="DS3597-2" root="2.16.840.1.113883.19.5.99999.1"/>
+  <id root="2.16.840.1.113883.19.5.99999.1" extension="DS3597-2"/>
   <code codeSystem="2.16.840.1.113883.6.1" code="18842-5" displayName="Discharge summary"/>
   <title>Sample Emergency Department Discharge Summary for EMS Interoperability</title>
   <effectiveTime value="202402050838-0700"/>
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
   <languageCode code="en-US"/>
-  <setId extension="sDS3597" root="2.16.840.1.113883.19.5.99999.19"/>
+  <setId root="2.16.840.1.113883.19.5.99999.19" extension="sDS3597"/>
   <versionNumber value="2"/>
   <recordTarget>
     <patientRole>
@@ -175,7 +175,7 @@
                 <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                 <time value="202005011312-0600"/>
                 <assignedAuthor>
-                  <id extension="9999999997" root="2.16.840.1.113883.4.6"/>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999997"/>
                   <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
                   <telecom use="WP" value="tel:555-555-1003"/>
                   <assignedPerson>
@@ -204,7 +204,7 @@
                     <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                     <time value="202005011312-0600"/>
                     <assignedAuthor>
-                      <id extension="9999999997" root="2.16.840.1.113883.4.6"/>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999997"/>
                       <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
                     </assignedAuthor>
                   </author>
@@ -568,7 +568,7 @@
                 <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                 <time value="202005011321-0600"/>
                 <assignedAuthor>
-                  <id extension="9999999997" root="2.16.840.1.113883.4.6"/>
+                  <id root="2.16.840.1.113883.4.6" extension="9999999997"/>
                   <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
                   <telecom use="WP" value="tel:555-555-1003"/>
                   <assignedPerson>
@@ -594,14 +594,14 @@
                   <effectiveTime  xsi:type="IVL_TS">
                     <low value="2020"/>
                   </effectiveTime>
-                  <value xsi:type="CD" code="238134004" codeSystem="2.16.840.1.113883.6.96" displayName="Generalized obesity (disorder)  ">
+                  <value xsi:type="CD" code="238134004" codeSystem="2.16.840.1.113883.6.96" displayName="Generalized obesity (disorder)">
                     <translation xsi:type="CD" codeSystem="2.16.840.1.113883.6.90" code="E66.9" displayName="Obesity, unspecified"/>
                   </value>
                   <author>
                     <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                     <time value="202005011321-0600"/>
                     <assignedAuthor>
-                      <id extension="9999999997" root="2.16.840.1.113883.4.6"/>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999997"/>
                       <code codeSystem="2.16.840.1.113883.6.101" code="207P00000X" displayName="Allopathic &amp; Osteopathic Physicians; Emergency Medicine"/>
                     </assignedAuthor>
                   </author>
@@ -629,7 +629,7 @@
                     <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
                     <time value="202306230918-0600"/>
                     <assignedAuthor>
-                      <id extension="9999999996" root="2.16.840.1.113883.4.6"/>
+                      <id root="2.16.840.1.113883.4.6" extension="9999999996"/>
                       <code codeSystem="2.16.840.1.113883.6.101" code="261QP2300X" displayName="Ambulatory Health Care Facilities; Clinic/Center, Primary Care"/>
                     </assignedAuthor>
                   </author>
