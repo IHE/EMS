@@ -371,7 +371,7 @@ Revision Date: July 23, 2024
   <xsl:template match="hl7:telecom[starts-with(@value, 'tel:')]">
     <!-- NEMSIS only supports US phone numbers; remove "tel:" prefix, "+1" country code for US if 
          present, and all non-digits. -->
-    <xsl:variable name="digits" select="replace(@value, '(tel:)|(\+1)|([^\d])', '$2')"/>
+    <xsl:variable name="digits" select="replace(@value, '(tel:)|(\+1)|([^\d])', '')"/>
     <!-- If the remaining digits are valid for NEMSIS, proceed -->
     <xsl:if test="matches($digits, '^[2-9][0-9]{2}[2-9][0-9]{6}$')">
       <ePatient.18>
