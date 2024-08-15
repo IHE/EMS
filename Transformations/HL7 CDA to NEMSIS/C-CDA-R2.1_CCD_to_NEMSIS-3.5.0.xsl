@@ -396,7 +396,7 @@ Revision Date: July 23, 2024
 
   <!-- Driver License -->
   <xsl:template match="hl7:id[starts-with(@root, '2.16.840.1.113883.4.3')]" mode="dl">
-    <!-- The 8th segment of the OID is the state ANSI code; see https://oidref.com/2.16.840.1.113883.4.3. -->
+    <!-- The 8th segment of the OID is the state ANSI code; see http://oid-info.com/get//2.16.840.1.113883.4.3. -->
     <ePatient.20><xsl:number value="tokenize(@root, '.')[8]" format="01"/></ePatient.20>
     <ePatient.21><xsl:value-of select="@extension"/></ePatient.21>
   </xsl:template>

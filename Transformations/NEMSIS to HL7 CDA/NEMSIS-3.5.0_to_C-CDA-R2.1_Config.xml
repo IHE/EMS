@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+EMS agency configuration information for XML Stylesheet Language Transformations (XSLTs) to 
+transform from NEMSIS EMSDataSet v3.5.0 to HL7 C-CDA v2.1 documents. This configuration document
+contains information about the EMS agency that is necessary in HL7 C-CDA documents but not present
+in NEMSIS documents. Ths information in this document should be on a per-agency basis, replacing 
+the sample data below with actual information about the EMS agency. The data in author and custodian 
+should comply with the HL7 C-CDA US Realm Header (2.16.840.1.113883.10.20.22.1.1) standard and can 
+contain any content specified in the standard.
+
+-->
+
+<config xmlns="urn:hl7-org:v3">
+
+  <!-- The agency's OID. If the agency doesn't have an OID, leave @root blank. -->
+  <oid root="2.16.840.1.113883.19.5.99999"/>
+
+  <!-- author section from US Realm Header -->
+  <author>
+    <!-- time is added by the transformation and does not need to be provifed here. -->
+    <assignedAuthor>
+      <!-- id/@extension should be the agency's National Provider Identifier (NPI). See 
+           https://npiregistry.cms.hhs.gov/. -->
+      <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+      <!-- code: Choose the appropriate code representing the agency's level of service from HL7 
+           ValueSet Healthcare Provider Taxonomy (2.16.840.1.114222.4.11.1066), along with the 
+           appropriate displayName. -->
+      <code code="146L00000X" codeSystem="2.16.840.1.113883.6.101" 
+            displayName="Emergency Medical Service Providers; &quot;Emergency Medical Technician, Paramedic&quot;"/>
+      <addr use="WP">
+        <streetAddressLine>295 Chipeta Way</streetAddressLine>
+        <city>Salt Lake City</city>
+        <state>UT</state>
+        <postalCode>84108</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-801-213-3930"/>
+      <assignedPerson>
+        <name>
+          <given>Carter</given>
+          <family>Schaefer</family>
+        </name>
+      </assignedPerson>
+      <!-- Optionally, assignedAuthoringDevice can also be provided here. If it is not, then the 
+           software information from the NEMSIS document is used (eRecord.SoftwareApplicationGroup). -->
+      <representedOrganization>
+        <!-- id/@extension should be the agency's National Provider Identifier (NPI). See 
+             https://npiregistry.cms.hhs.gov/. -->
+        <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+        <name>Sample EMS Agency</name>
+        <telecom use="WP" value="tel:+1-801-213-3930"/>
+        <addr use="WP">
+          <streetAddressLine>295 Chipeta Way</streetAddressLine>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postalCode>84108</postalCode>
+          <country>US</country>
+        </addr>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+
+  <!-- custodian section from US Realm Header -->
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <!-- id/@extension should be the agency's National Provider Identifier (NPI). See 
+             https://npiregistry.cms.hhs.gov/. -->
+        <id root="2.16.840.1.113883.4.6" extension="9999999999"/>
+        <name>Sample EMS Agency</name>
+        <telecom use="WP" value="tel:+1-801-213-3930"/>
+        <addr use="WP">
+          <streetAddressLine>295 Chipeta Way</streetAddressLine>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postalCode>84108</postalCode>
+          <country>US</country>
+        </addr>
+        </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+
+</config>
