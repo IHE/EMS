@@ -13,8 +13,8 @@ of the patient.
 This stylesheet assumes the document to be transformed is a NEMSIS EMSDataSet Document containing a 
 single PCR. If the document contains multiple PCRs, only the first PCR is transformed.
 
-Version: 3.5.0.230317CP4_2.1.2022Sep_240815
-Revision Date: August 15, 2024
+Version: 3.5.0.230317CP4_2.1.2022Sep_240820
+Revision Date: August 20, 2024
 
 -->
 
@@ -112,6 +112,7 @@ Revision Date: August 15, 2024
       <code code="67796-3" codeSystem="2.16.840.1.113883.6.1" displayName="EMS patient care report"/>
       <title>EMS Patient Care Report</title>
       <effectiveTime value="{$currentDateTime}"/>
+      <!-- confidentialityCode not supported in NEMSIS -->
       <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N" displayName="normal"/>
       <languageCode code="en-US"/>
       <!-- setId: eRecord.01 Patient Care Report Number could be used instead, but @UUID is 

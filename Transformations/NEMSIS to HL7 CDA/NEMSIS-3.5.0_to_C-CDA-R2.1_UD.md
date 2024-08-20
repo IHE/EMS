@@ -35,6 +35,8 @@ This transformation generates an HL7 C-CDA R2.1 Unstructured Document, filling i
   Uses `@UUID`. `eRecord.01 Patient Care Report Number` could be used, but `@UUID` is guaranteed to be universally unique. This should be an id that changes each time the document is re-generated from the underlying data, but such information is not available in the NEMSIS document.
 * **code**
   Uses LOINC code `67796-3` ("EMS patient care report").
+  **confidentialityCode**
+  `confidentialityCode` is not supported in NEMSIS. It is set to `N` ("normal").
 * **effectiveTime**
   Uses the current date/time. The C-CDA US Realm Header specifies that effectiveTime "signifies the document creation time, when the document first came into being. Where the CDA document is a transform from an original document in some other format, the ClinicalDocument.effectiveTime is the time the original document is created. The time when the transform occurred is not currently represented in CDA." However, the NEMSIS document contains no information about when the original document was created or modified.
 * **setId**
