@@ -7,9 +7,9 @@ The HL7 C-CDA specification includes [samples](https://cdasearch.hl7.org/search)
 
 The [HL7 CDA C-CDA companion guide](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=447) has a [HL7 github CDA-ccd-companion](https://github.com/HL7/cda-ccda-companion/) also includes some samples.
 
-ONC has a site for C-CDA things including validation and scorecard:
+ASTP/ONC has a site for C-CDA things including validation and scorecard:
 
-https://site.healthit.gov/sandbox-ccda
+https://site.healthit.gov/c-cda
 
 On that site is a link to a github repo that holds samples from various sources:
 
