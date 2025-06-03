@@ -5,7 +5,7 @@ This transformation is used to transform content from an [HL7 C-CDA R2.1 Continu
 ## Files
 
 * **[C-CDA-R2.1_CCD_to_NEMSIS-3.5.0.xsl](C-CDA-R2.1_CCD_to_NEMSIS-3.5.0.xsl)**
-  * The XML Style Sheet Language Transformation (XSLT) file.
+  * The XML Style Sheet Language Transformation (XSLT) file. It also imports XSLT files from `includes`.
 * **[C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_In.xml](C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_In.xml)**
   * Sample Continuity of Care Document representing a hospital emergency department encounter following EMS transport.
 * **[C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_Out.xml](C-CDA-R2.1_CCD_to_NEMSIS-3.5.0_Out.xml)**
@@ -93,4 +93,4 @@ The **emergency department encounter** is the first encounter (chronologically) 
 
 ### Terminology Mapping
 
-As noted above, NEMSIS only supports ICD-10-CM for diagnoses and ICD-10-PCS for procedures. C-CDA documents often use SNOMED, HCPCS, and CPT and may not provide translations. This transformation has a function named `n:terminology` that can be extended to implement calls to a terminology service. If the transformation doesn't find a NEMSIS-supported code, it will pass the HL7 `code` or `value` node to the `n:terminology` function. If you have access to a terminology service, you can add code to the `n:terminology` function to implement an API call to the terminology service to request translation to the NEMSIS-supported code system and parse the response. The `n:terminology` function should return a simple string value representing the translated code. If the mapping is unsuccessful, the function should return nothing.
+As noted above, NEMSIS only supports ICD-10-CM for diagnoses and ICD-10-PCS for procedures. C-CDA documents often use SNOMED, HCPCS, and CPT and may not provide translations. This transformation uses a function named `n:terminology` in `includes/terminologyService.xsl` that can be extended to implement calls to a terminology service. If the transformation doesn't find a NEMSIS-supported code, it will pass the HL7 `code` or `value` node to the `n:terminology` function. If you have access to a terminology service, you can add code to the `n:terminology` function to implement an API call to the terminology service to request translation to the NEMSIS-supported code system and parse the response. The `n:terminology` function should return a simple string value representing the translated code. If the mapping is unsuccessful, the function should return nothing.

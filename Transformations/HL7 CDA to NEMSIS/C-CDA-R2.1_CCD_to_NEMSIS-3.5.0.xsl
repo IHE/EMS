@@ -13,8 +13,8 @@ an eOutcome data section representing the information from the hospital's care o
 The document to be transformed may contain multiple encounters, which may include a hospital 
 emergency department encounter, inpatient encounter, or both.
 
-Version: 2.1.2022Sep_3.5.0.230317CP4_240723
-Revision Date: July 23, 2024
+Version: 2.1.2022Sep_3.5.0.230317CP4_250603
+Revision Date: June 3, 2025
 
 -->
 
@@ -27,6 +27,13 @@ Revision Date: July 23, 2024
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   exclude-result-prefixes="hl7 n sdtc xs">
+
+  <!-- If you have access to a terminology mapping service, edit terminologyService.xsl to 
+       implement API calls. -->
+  <xsl:import href="includes/terminologyService.xsl"/>
+  <xsl:import href="includes/functions.xsl"/>
+  <xsl:import href="includes/mappings.xsl"/>
+  <xsl:import href="includes/ePatient.xsl"/>
 
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
@@ -56,18 +63,6 @@ Revision Date: July 23, 2024
   </xsl:variable>
 
   <xsl:key name="code" match="*" use="@hl7"/>
-
-
-  <!-- #Terminology Function# -->
-
-  <!-- If you have access to a terminology mapping service, edit this function to implement API calls. -->
-  <xsl:function name="n:terminology">
-    <!-- An HL7 C-CDA "code" or "value" element -->
-    <xsl:param name="code" required="yes"/>
-    <!-- The OID of the requested code system to map to -->
-    <xsl:param name="codeSystem" required="yes" as="xs:string"/>
-    <!-- Implement terminology service API call here. It should return a string value. -->
-  </xsl:function>
 
 
   <!-- #Root Template# -->
@@ -128,45 +123,7 @@ Revision Date: July 23, 2024
 
   <!-- #Sections# -->
 
-  <!-- Patient -->
-
-  <!-- To assist patient identification and record matching, this transformation generates an 
-       incomplete NEMSIS ePatient section. It only includes some elements. -->
-  <xsl:template match="hl7:patientRole">
-    <ePatient>
-      <!-- Names -->
-      <!-- If a Legal name is provided, use that; otherwise, use the first name entry for the patient. -->
-      <xsl:choose>
-        <xsl:when test="hl7:patient/hl7:name[@use='L']">
-          <xsl:apply-templates select="hl7:patient/hl7:name[@use='L']"/>    
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="hl7:patient/hl7:name[1]"/>
-        </xsl:otherwise>
-      </xsl:choose>
-      <!-- Patient's Home Address, City, State, ZIP Code, and Country could also be mapped, but 
-           they are not implemented in this transformation. City would need to be mapped from text
-           to GNIS code. State would need to be mapped from postal abbreviation to ANSI code. -->
-      <!-- SSN -->
-      <xsl:apply-templates select="hl7:id[@root='2.16.840.1.113883.4.1']" mode="ssn"/>
-      <!-- Gender -->
-      <xsl:apply-templates select="hl7:patient/hl7:administrativeGenderCode"/>
-      <!-- Race -->
-      <xsl:apply-templates select="hl7:patient/hl7:raceCode"/>
-      <!-- Race: Additional Races (only the ones supported by NEMSIS; the complete list has 490 items) -->
-      <xsl:apply-templates select="hl7:patient/sdtc:raceCode[key('code', @code, $race)]"/>
-      <!-- Race: Hispanic or Latino Ethnicity-->
-      <xsl:apply-templates select="hl7:patient/hl7:ethnicityCode"/>
-      <!-- Date of Birth -->
-      <xsl:apply-templates select="hl7:patient/hl7:birthTime[matches(@value, '^[0-9]{8}')]"/>
-      <!-- Phone Numbers -->
-      <xsl:apply-templates select="hl7:telecom[starts-with(@value, 'tel:')]"/>
-      <!-- Email Addresses -->
-      <xsl:apply-templates select="hl7:telecom[starts-with(@value, 'mailto:')]"/>
-      <!-- Driver License -->
-      <xsl:apply-templates select="hl7:id[starts-with(@root, '2.16.840.1.113883.4.3')]" mode="dl"/>
-    </ePatient>
-  </xsl:template>
+  <!-- Patient: includes/ePatient.xsl -->
 
   <!-- Outcome -->
   <!-- This generates a complete NEMSIS eOutcome section, filling in "Not Values" where data are 
@@ -321,86 +278,6 @@ Revision Date: July 23, 2024
 
   <!-- #Elements# -->
 
-  <!-- Patient Name -->
-  <xsl:template match="hl7:patient/hl7:name">
-    <ePatient.PatientNameGroup>
-      <xsl:apply-templates select="hl7:family"/>
-      <xsl:apply-templates select="hl7:given[1]"/>
-      <xsl:apply-templates select="hl7:given[2]"/>
-    </ePatient.PatientNameGroup>
-  </xsl:template>
-
-  <xsl:template match="hl7:family">
-    <ePatient.02><xsl:value-of select="."/></ePatient.02>
-  </xsl:template>
-
-  <xsl:template match="hl7:given[1]">
-    <ePatient.03><xsl:value-of select="."/></ePatient.03>
-  </xsl:template>
-
-  <xsl:template match="hl7:given[2]">
-    <ePatient.04><xsl:value-of select="."/></ePatient.04>
-  </xsl:template>
-
-  <!-- SSN -->
-  <xsl:template match="hl7:patientRole/hl7:id[@root='2.16.840.1.113883.4.1']" mode="ssn">
-    <ePatient.12><xsl:value-of select="translate(@extension, '-', '')"/></ePatient.12>
-  </xsl:template>
-
-  <!-- Gender -->
-  <xsl:template match="hl7:administrativeGenderCode">
-    <ePatient.13><xsl:value-of select="key('code', @code, $gender)/@nemsis"/></ePatient.13>
-  </xsl:template>
-
-  <!-- Race -->
-  <xsl:template match="*:raceCode">
-    <ePatient.14><xsl:value-of select="key('code', @code, $race)/@nemsis"/></ePatient.14>
-  </xsl:template>
-
-  <!-- Ethnicity: Hispanic or Latino -->
-  <xsl:template match="hl7:ethnicGroupCode[@code='2135-2']">
-    <ePatient.14>2514007</ePatient.14>
-  </xsl:template>
-  
-  <!-- Date of Birth -->
-  <xsl:template match="hl7:birthTime">
-    <ePatient.17><xsl:copy-of select="n:date(@value)"/></ePatient.17>
-  </xsl:template>
-
-  <!-- Phone Number -->
-  <xsl:template match="hl7:telecom[starts-with(@value, 'tel:')]">
-    <!-- NEMSIS only supports US phone numbers; remove "tel:" prefix, "+1" country code for US if 
-         present, and all non-digits. -->
-    <xsl:variable name="digits" select="replace(@value, '(tel:)|(\+1)|([^\d])', '')"/>
-    <!-- If the remaining digits are valid for NEMSIS, proceed -->
-    <xsl:if test="matches($digits, '^[2-9][0-9]{2}[2-9][0-9]{6}$')">
-      <ePatient.18>
-        <xsl:if test="key('code', @use, $phoneNumberType)/@nemsis != ''">
-          <xsl:attribute name="PhoneNumberType" select="key('code', @use, $phoneNumberType)/@nemsis"/>
-        </xsl:if>
-        <xsl:value-of select="replace($digits, '^([2-9][0-9]{2})([2-9][0-9]{2})([0-9]{4})$', '$1-$2-$3')"/>
-      </ePatient.18>
-    </xsl:if>
-  </xsl:template>
-
-  <!-- Email Address -->
-  <xsl:template match="hl7:telecom[starts-with(@value, 'mailto:')]">
-    <!-- If the email address is valid for NEMSIS, proceed -->
-    <xsl:if test="matches(@value, '@')">
-      <ePatient.19>
-        <xsl:attribute name="EmailAddressType" select="@use"/>
-        <xsl:value-of select="tokenize(@value, ':')[2]"/>
-      </ePatient.19>
-    </xsl:if>
-  </xsl:template>
-
-  <!-- Driver License -->
-  <xsl:template match="hl7:id[starts-with(@root, '2.16.840.1.113883.4.3')]" mode="dl">
-    <!-- The 8th segment of the OID is the state ANSI code; see http://oid-info.com/get//2.16.840.1.113883.4.3. -->
-    <ePatient.20><xsl:number value="tokenize(@root, '.')[8]" format="01"/></ePatient.20>
-    <ePatient.21><xsl:value-of select="@extension"/></ePatient.21>
-  </xsl:template>
-
   <!-- Emergency Department or Inpatient Disposition -->
   <xsl:template match="sdtc:dischargeDispositionCode[matches(@code, '^(0?[1-79])|(2[01])|(30)|(43)|(5[01])|(6[1-6])|(70)$')]">
     <xsl:number value="@code" format="01"/>
@@ -456,79 +333,8 @@ Revision Date: July 23, 2024
   </xsl:template>
 
 
-  <!-- #Functions# -->
-
-  <xsl:function name="n:map">
-    <xsl:param name="nemsisElementName" required="yes" as="xs:string"/>
-    <xsl:param name="hl7Element"/>
-    <xsl:param name="nemsisRequired" as="xs:boolean"/>
-    <xsl:variable name="result">
-      <xsl:apply-templates select="$hl7Element"/>
-    </xsl:variable>
-    <xsl:if test="$result[. != ''] or $nemsisRequired">
-      <xsl:element name="{$nemsisElementName}">
-        <xsl:if test="not($result[. != ''])">
-          <xsl:attribute name="xsi:nil">true</xsl:attribute>
-          <xsl:attribute name="NV">7701003</xsl:attribute>
-        </xsl:if>
-        <xsl:copy-of select="$result"/>
-      </xsl:element>      
-    </xsl:if>
-  </xsl:function>
-
-  <xsl:function name="n:mapTerminology">
-    <xsl:param name="nemsisElementName" required="yes" as="xs:string"/>
-    <xsl:param name="code" required="yes"/>
-    <xsl:param name="codeSystem" required="yes" as="xs:string"/>
-    <!-- Select code from the requested code system, which may come from code or code/translation -->
-    <xsl:variable name="codeInSource" select="$code//*[@codeSystem=$codeSystem]/@code[1]"/>
-     <xsl:choose>
-      <!-- Return the value if found -->
-      <xsl:when test="$codeInSource">
-        <xsl:element name="{$nemsisElementName}">
-          <xsl:value-of select="$codeInSource"/>
-        </xsl:element>      
-      </xsl:when>
-      <!-- Otherwise, call the terminology service (extensible function is near the top of this XSLT) -->
-      <xsl:otherwise>
-        <xsl:variable name="codeFromTerminologyService" select="n:terminology($code, $codeSystem)"/>
-        <xsl:choose>
-          <xsl:when test="$codeFromTerminologyService">
-            <xsl:element name="{$nemsisElementName}">
-              <xsl:value-of select="$codeFromTerminologyService"/>
-            </xsl:element>      
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:comment>Unable to map code <xsl:value-of select="string-join($code/(@code, @displayName), ' ')"/> from code system <xsl:value-of select="string-join($code/(@codeSystem, @codeSystemName), ' ')"/>.</xsl:comment>
-            <xsl:element name="{$nemsisElementName}">
-              <xsl:attribute name="xsi:nil">true</xsl:attribute>
-              <xsl:attribute name="NV">7701003</xsl:attribute>
-            </xsl:element>      
-              </xsl:otherwise>
-          </xsl:choose>
-      </xsl:otherwise>
-     </xsl:choose>
-  </xsl:function>
-
-  <xsl:function name="n:dateTime">
-    <xsl:param name="hl7DateTime"/>
-    <!-- Only transform dateTime values that are specified at least to the minute and have a timezone -->
-    <xsl:if test="matches($hl7DateTime, '^([0-9]{12}|[0-9]{14}(\.[0-9]+)?)([+-][0-9]{4})$')">
-      <!-- Add "00" seconds if seconds are missing -->
-      <xsl:variable name="fullDateTime" select="replace($hl7DateTime, '^([0-9]{12})([+-][0-9]{4})$', '$100$2')"/>
-      <xsl:value-of select="xs:dateTime(replace($fullDateTime, '^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})?(\.[0-9]+)?([+-])([0-9]{2})([0-9]{2})$','$1-$2-$3T$4:$5:$6$7$8$9:$10'))"/>
-    </xsl:if>
-  </xsl:function>
+  <!-- #Variables# -->
   
-  <xsl:function name="n:date">
-    <xsl:param name="hl7Date"/>
-    <!-- Only transform date values that are specified at least to the day -->
-    <xsl:if test="matches($hl7Date, '^[0-9]{8}')">
-      <xsl:value-of select="xs:date(replace($hl7Date, '^([0-9]{4})([0-9]{2})([0-9]{2})(.*)$','$1-$2-$3'))"/>
-    </xsl:if>
-  </xsl:function>
-
-
   <!-- Enounter Type Variable -->
   <xsl:variable name="encType">
     <ed>
@@ -566,51 +372,6 @@ Revision Date: July 23, 2024
       <code hl7="99476" hl7Desc="Subsequent inpatient pediatric critical care, per day, for the evaluation and management of a critically ill infant or young child, 2 through 5 years of age"/>
       <code hl7="99477" hl7Desc="Initial hospital care, per day, for the evaluation and management of the neonate, 28 days of age or younger, who requires intensive observation, frequent interventions, and other intensive care services"/>
     </inpatient>
-  </xsl:variable>
-
-
-  <!-- #Mapping Variables# -->
-
-  <!-- Gender -->
-  <!-- HL7 administrativeGenderCode, value set 2.16.840.1.113883.1.11.1 -->
-  <xsl:variable name="gender">
-    <code hl7="F" nemsis="9906001" hl7Desc="Female" nemsisDesc="Female"/>
-    <code hl7="M" nemsis="9906003" hl7Desc="Male" nemsisDesc="Male"/>
-    <code hl7="UN" nemsis="9906005" hl7Desc="Undifferentiated" nemsisDesc="Unknown (Unable to Determine)"/>
-  </xsl:variable>
-
-  <!-- Race -->
-  <!-- HL7 raceCode, value set 2.16.840.1.113883.1.11.1 -->
-  <xsl:variable name="race">
-    <code hl7="1002-5" nemsis="2514001" hl7Desc="American Indian or Alaska Native" nemsisDesc="American Indian or Alaska Native"/>
-    <code hl7="2028-9" nemsis="2514003" hl7Desc="Asian" nemsisDesc="Asian"/>
-    <code hl7="2054-5" nemsis="2514005" hl7Desc="Black or African American" nemsisDesc="Black or African American"/>
-    <code hl7="2076-8" nemsis="2514009" hl7Desc="Native Hawaiian or Other Pacific Islander" nemsisDesc="Native Hawaiian or Other Pacific Islander"/>
-    <code hl7="2106-3" nemsis="2514011" hl7Desc="White" nemsisDesc="White"/>
-  </xsl:variable>
-
-  <!-- Phone Number Type -->
-  <!-- HL7 Telecom Use, value set 2.16.840.1.113883.11.20.9.20 -->
-  <xsl:variable name="phoneNumberType">
-    <code hl7="AS" nemsis="" hl7Desc="answering service" nemsisDesc=""/>
-    <code hl7="EC" nemsis="" hl7Desc="emergency contact" nemsisDesc=""/>
-    <code hl7="HP" nemsis="9913003" hl7Desc="primary home" nemsisDesc="Home"/>
-    <code hl7="HV" nemsis="9913003" hl7Desc="vacation home" nemsisDesc="Home"/>
-    <code hl7="MC" nemsis="9913005" hl7Desc="mobile contact)" nemsisDesc="Mobile"/>
-    <code hl7="PG" nemsis="9913007" hl7Desc="pager" nemsisDesc="Pager"/>
-    <code hl7="WP" nemsis="9913009" hl7Desc="work place" nemsisDesc="Work"/>
-  </xsl:variable>
-
-  <!-- Email Address Type -->
-  <!-- HL7 Telecom Use, value set 2.16.840.1.113883.11.20.9.20 -->
-  <xsl:variable name="emailAddressType">
-    <code hl7="AS" nemsis="" hl7Desc="answering service" nemsisDesc=""/>
-    <code hl7="EC" nemsis="" hl7Desc="emergency contact" nemsisDesc=""/>
-    <code hl7="HP" nemsis="9904001" hl7Desc="primary home" nemsisDesc="Personal"/>
-    <code hl7="HV" nemsis="9904001" hl7Desc="vacation home" nemsisDesc="Personal"/>
-    <code hl7="MC" nemsis="" hl7Desc="mobile contact)" nemsisDesc=""/>
-    <code hl7="PG" nemsis="" hl7Desc="pager" nemsisDesc=""/>
-    <code hl7="WP" nemsis="9904003" hl7Desc="work place" nemsisDesc="Work"/>
   </xsl:variable>
 
 
