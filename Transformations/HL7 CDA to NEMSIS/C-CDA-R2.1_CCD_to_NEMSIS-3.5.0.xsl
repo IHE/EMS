@@ -13,8 +13,8 @@ an eOutcome data section representing the information from the hospital's care o
 The document to be transformed may contain multiple encounters, which may include a hospital 
 emergency department encounter, inpatient encounter, or both.
 
-Version: 2.1.2022Sep_3.5.0.230317CP4_250603
-Revision Date: June 3, 2025
+Version: 2.1.2022Sep_3.5.0.230317CP4_250605
+Revision Date: June 5, 2025
 
 -->
 

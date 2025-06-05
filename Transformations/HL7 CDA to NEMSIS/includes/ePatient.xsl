@@ -4,8 +4,8 @@
 
 ePatient section
 
-Version: 2.1.2022Sep_3.5.0.230317CP4_250603
-Revision Date: June 3, 2025
+Version: 2.1.2022Sep_3.5.0.230317CP4_250605
+Revision Date: June 5, 2025
 
 -->
 
@@ -49,7 +49,7 @@ Revision Date: June 3, 2025
       <!-- Race: Additional Races (only the ones supported by NEMSIS; the complete list has 490 items) -->
       <xsl:apply-templates select="hl7:patient/sdtc:raceCode[key('code', @code, $race)]"/>
       <!-- Race: Hispanic or Latino Ethnicity-->
-      <xsl:apply-templates select="hl7:patient/hl7:ethnicityCode"/>
+      <xsl:apply-templates select="hl7:patient/hl7:ethnicGroupCode"/>
       <!-- Date of Birth -->
       <xsl:apply-templates select="hl7:patient/hl7:birthTime[matches(@value, '^[0-9]{8}')]"/>
       <!-- Phone Numbers -->
