@@ -1,21 +1,21 @@
-# NEMSIS v3.5.0 Patient Care Report to C-CDA R2.1 Unstructured Document Transformation
+# NEMSIS v3.5.1 Patient Care Report to C-CDA R2.1 Unstructured Document Transformation
 
-This transformation is used to transform content from a [NEMSIS v3.5.0 EMSDataSet document](https://nemsis.org/media/nemsis_v3/release-3.5.0/DataDictionary/PDFHTML/EMSDEMSTATE/index.html) representing an EMS patient care report (PCR) into an [HL7 C-CDA R2.1 Unstructured Document](https://www.hl7.org/ccdasearch/templates/2.16.840.1.113883.10.20.22.1.10.html).
+This transformation is used to transform content from a [NEMSIS v3.5.1 EMSDataSet document](https://nemsis.org/media/nemsis_v3/release-3.5.1/DataDictionary/PDFHTML/EMSDEMSTATE/index.html) representing an EMS patient care report (PCR) into an [HL7 C-CDA R2.1 Unstructured Document](https://www.hl7.org/ccdasearch/templates/2.16.840.1.113883.10.20.22.1.10.html).
 
 ## Files
 
-* **[NEMSIS-3.5.0_to_C-CDA-R2.1_UD.xsl](NEMSIS-3.5.0_to_C-CDA-R2.1_UD.xsl)**
+* **[NEMSIS-3.5.1_to_C-CDA-R2.1_UD.xsl](NEMSIS-3.5.1_to_C-CDA-R2.1_UD.xsl)**
   * The XML Style Sheet Language Transformation (XSLT) file.
-* **[NEMSIS-3.5.0_to_C-CDA-R2.1_UD.xml](NEMSIS-3.5.0_to_C-CDA-R2.1_Config.xml)**
+* **[NEMSIS-3.5.1_to_C-CDA-R2.1_UD.xml](NEMSIS-3.5.1_to_C-CDA-R2.1_Config.xml)**
   * Configuration document to provide information about the EMS agency that is necessary in HL7 C-CDA documents but not present in NEMSIS documents.
-* **[NEMSIS-3.5.0_to_C-CDA-R2.1_UD_In.xml](NEMSIS-3.5.0_to_C-CDA-R2.1_UD_In.xml)**
+* **[NEMSIS-3.5.1_to_C-CDA-R2.1_UD_In.xml](NEMSIS-3.5.1_to_C-CDA-R2.1_UD_In.xml)**
   * Sample NEMSIS EMSDataSet Document representing an EMS PCR.
-* **[NEMSIS-3.5.0_to_C-CDA-R2.1_UD_Out.xml](NEMSIS-3.5.0_to_C-CDA-R2.1_UD_Out.xml)**
+* **[NEMSIS-3.5.1_to_C-CDA-R2.1_UD_Out.xml](NEMSIS-3.5.1_to_C-CDA-R2.1_UD_Out.xml)**
   * Sample HL7 C-CDA R2.1 Unstructured Document output resulting from applying the transformation to the sample NEMSIS EMSDataSet document.
 
 ## Transformation Notes
 
-This product is provided by the NEMSIS TAC, without charge, to facilitate a data mapping between NEMSIS v3.5.0 and HL7 C-CDA. This stylesheet transforms a  PCR from an EMS crew, provided in NEMSIS v3.5.0 format, into an HL7 C-CDA R2.1 Clinical Document representing the information from EMS's care of the patient.
+This product is provided by the NEMSIS TAC, without charge, to facilitate a data mapping between NEMSIS v3.5.1 and HL7 C-CDA. This stylesheet transforms a  PCR from an EMS crew, provided in NEMSIS v3.5.1 format, into an HL7 C-CDA R2.1 Clinical Document representing the information from EMS's care of the patient.
 
 This stylesheet assumes the document to be transformed is a NEMSIS EMSDataSet Document containing a single PCR. If the document contains multiple PCRs, only the first PCR is transformed.
 
@@ -25,7 +25,7 @@ The unstructured document content must be provided in `eOther.FileGroup` in the 
 
 * **configUrl** (optional)
   Format: URL
-  This transformation requires a configuration document containing information about the EMS agency that is not available in NEMSIS but mandatory in the HL7 C-CDA header. This parameter makes it possible to point to a file or other URL that contains the necessary information. If this parameter is not provided, the stylesheet will use the configuration in [NEMSIS-3.5.0_to_C-CDA-R2.1_Config.xml](NEMSIS-3.5.0_to_C-CDA-R2.1_Config.xml) located in the same location as this transformation file. The information in the document should be on a per-agency basis, replacing the sample data with actual information about the EMS agency. The data in `author` and `custodian` should comply with the HL7 C-CDA US Realm Header standard (2.16.840.1.113883.10.20.22.1.1) and can contain any content specified in the standard.
+  This transformation requires a configuration document containing information about the EMS agency that is not available in NEMSIS but mandatory in the HL7 C-CDA header. This parameter makes it possible to point to a file or other URL that contains the necessary information. If this parameter is not provided, the stylesheet will use the configuration in [NEMSIS-3.5.1_to_C-CDA-R2.1_Config.xml](NEMSIS-3.5.1_to_C-CDA-R2.1_Config.xml) located in the same location as this transformation file. The information in the document should be on a per-agency basis, replacing the sample data with actual information about the EMS agency. The data in `author` and `custodian` should comply with the HL7 C-CDA US Realm Header standard (2.16.840.1.113883.10.20.22.1.1) and can contain any content specified in the standard.
 
 ### ClinicalDocument
 
@@ -88,6 +88,7 @@ This transformation generates an HL7 C-CDA R2.1 Unstructured Document, filling i
   * **name**
     * **given**
     * **family**
+    * **suffix**
   * **administrativeGenderCode**
     NEMSIS transgender codes are mapped to HL7 code `UN` ("Undifferentiated").
   * **birthTime**
@@ -96,6 +97,7 @@ This transformation generates an HL7 C-CDA R2.1 Unstructured Document, filling i
   * **sdtc:raceCode**
   * **ethnicGroupCode**
     If "Hispanic or Latino" is recorded in `ePatient.14 - Race`, it is used. If at least one value is recorded `ePatient,.14 - Race` but not "Hispanic or Latino", assume "Not Hispanic or Latino". Otherwise, assume "No Information".
+  * **languageCommunication**
 
 ### Non-XML Body
 

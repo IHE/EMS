@@ -30,6 +30,7 @@
           <given>Malachi</given>
           <given>Rowe</given>
           <family>Gislason</family>
+          <suffix>III</suffix>
         </name>
         <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="M" displayName="Male"/>
         <birthTime value="19920817"/>

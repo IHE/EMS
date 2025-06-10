@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-     This partial NEMSIS 3.5.0 document was generated from an HL7 C-CDA 2.1 Continuity of Care 
+     This partial NEMSIS 3.5.1 document was generated from an HL7 C-CDA 2.1 Continuity of Care 
      Document via an XML Stylesheet Language Transformation (XSLT). It is not valid per the NEMSIS 
-     3.5.0 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome 
+     3.5.1 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome 
      section.
     -->
 <!--
@@ -15,7 +15,7 @@
       -->
 <EMSDataSet xmlns="http://www.nemsis.org"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.0/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.1/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
    <Header>
       <PatientCareReport>
          <ePatient>
@@ -24,12 +24,25 @@
                <ePatient.03>Minnie</ePatient.03>
                <ePatient.04>Cullen</ePatient.04>
             </ePatient.PatientNameGroup>
+            <ePatient.05>3844 S 4535 W St</ePatient.05>
+            <ePatient.06>1437843</ePatient.06>
+            <ePatient.07 xsi:nil="true" NV="7701003"/>
+            <ePatient.08>49</ePatient.08>
+            <ePatient.09>84120</ePatient.09>
+            <ePatient.10>US</ePatient.10>
             <ePatient.12>222005682</ePatient.12>
             <ePatient.13>9906001</ePatient.13>
             <ePatient.14>2514011</ePatient.14>
+            <ePatient.AgeGroup>
+               <ePatient.15 xsi:nil="true" NV="7701003"/>
+               <ePatient.16 xsi:nil="true" NV="7701003"/>
+            </ePatient.AgeGroup>
             <ePatient.17>1938-12-02</ePatient.17>
             <ePatient.18 PhoneNumberType="9913003">801-468-1581</ePatient.18>
-            <ePatient.18 PhoneNumberType="9913005">801-334-8733</ePatient.18>
+            <ePatient.18 PhoneNumberType="9913005">+1 801 334 8733</ePatient.18>
+            <ePatient.24>eng</ePatient.24>
+            <ePatient.24>ger</ePatient.24>
+            <ePatient.25>9919001</ePatient.25>
          </ePatient>
          <eOutcome>
             <eOutcome.01>09</eOutcome.01>

@@ -1,48 +1,62 @@
-# HL7 C-CDA R2.1 Discharge Summary to NEMSIS v3.5.0 Outcome Transformation
+# HL7 C-CDA R2.1 Discharge Summary to NEMSIS v3.5.1 Outcome Transformation
 
-This transformation is used to transform content from an [HL7 C-CDA R2.1 Discharge Summary](https://www.hl7.org/ccdasearch/templates/2.16.840.1.113883.10.20.22.1.8.html) document representing a hospital emergency department or inpatient encounter that occurred as a result of an EMS transport into the [eOutcome](https://nemsis.org/media/nemsis_v3/release-3.5.0/DataDictionary/PDFHTML/EMSDEMSTATE/sections/eOutcome.002.xml) section of a NEMSIS v3.5.0 EMSDataSet document.
+This transformation is used to transform content from an [HL7 C-CDA R2.1 Discharge Summary](https://www.hl7.org/ccdasearch/templates/2.16.840.1.113883.10.20.22.1.8.html) document representing a hospital emergency department or inpatient encounter that occurred as a result of an EMS transport into the [eOutcome](https://nemsis.org/media/nemsis_v3/release-3.5.1/DataDictionary/PDFHTML/EMSDEMSTATE/sections/eOutcome.002.xml) section of a NEMSIS v3.5.1 EMSDataSet document.
 
 ## Files
 
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0.xsl](C-CDA-R2.1_DS_to_NEMSIS-3.5.0.xsl)**
+* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.1.xsl](C-CDA-R2.1_DS_to_NEMSIS-3.5.1.xsl)**
   * The XML Style Sheet Language Transformation (XSLT) file. It also imports XSLT files from `includes`.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_In.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_In.xml)**
+* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.1_ED_In.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.1_ED_In.xml)**
   * Sample Discharge Summary document representing a hospital emergency department encounter following EMS transport.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_Out.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_ED_Out.xml)**
+* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.1_ED_Out.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.1_ED_Out.xml)**
   * Sample NEMSIS output resulting from applying the transformation to the sample emergency department Discharge Summary document.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_In.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_In.xml)**
+* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.1_Inpatient_In.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.1_Inpatient_In.xml)**
   * Sample Discharge Summary document representing a hospital inpatient encounter following EMS transport.
-* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_Out.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.0_Inpatient_Out.xml)**
+* **[C-CDA-R2.1_DS_to_NEMSIS-3.5.1_Inpatient_Out.xml](C-CDA-R2.1_DS_to_NEMSIS-3.5.1_Inpatient_Out.xml)**
   * Sample NEMSIS output resulting from applying the transformation to the sample inpatient Discharge Summary document.
 
 ## Transformation Notes
 
-This product is provided by the NEMSIS TAC, without charge, to facilitate a data mapping between HL7 C-CDA and NEMSIS v3.5.0. This stylesheet transforms a Clinical Document from a hospital, provided in HL7 C-CDA 2.1 format, into a partial NEMSIS v3.5.0 EMSDataSet XML document containing an eOutcome data section representing the information from the hospital's care of the patient.
+This product is provided by the NEMSIS TAC, without charge, to facilitate a data mapping between HL7 C-CDA and NEMSIS v3.5.1. This stylesheet transforms a Clinical Document from a hospital, provided in HL7 C-CDA 2.1 format, into a partial NEMSIS v3.5.1 EMSDataSet XML document containing an eOutcome data section representing the information from the hospital's care of the patient.
 
-The resulting document is not valid per the NEMSIS 3.5.0 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome section.
+The resulting document is not valid per the NEMSIS 3.5.1 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome section.
 
 This stylesheet assumes the document to be transformed is a C-CDA v2.1 Discharge Summary representing a hospital emergency department or inpatient encounter.
 
 ### ePatient
 
-To assist patient identification and record matching, this transformation generates an incomplete NEMSIS `ePatient` section. It only includes some elements.
+This generates a complete NEMSIS ePatient section, filling in "Not Values" where data are not available in the C-CDA document.
 
 * **ePatient.PatientNameGroup**
   If a Legal name is provided, use that; otherwise, use the first name entry for the patient.
   * **ePatient.02 - Last Name**
   * **ePatient.03 - First Name**
   * **ePatient.04 - Middle Initial/Name**
+  * **ePatient.23 - Name Suffix**
+* **Home Address**
+  * Use the first address that represents a "home" address, if available. Otherwise, use the first address that represents an "other" address, if available. Otherwise, use the first address that has no use specified. Do not use "work" or "bad" addresses.
+  * **ePatient.06 - Patient's Home City**
+  Translate text to GNIS.
+  * **ePatient.07 - Patient's Home County**
+  Not available in C-CDA.
+  * **ePatient.08 - Patient's Home State**
+  HL7 Value Set for State has no authoritative source. NEMSIS specifies specifies ANSI INCITS 38-2009 two-digit numeric codes. This transformation will use two-digit codes (assumed to be ANSI codes) or map from postal abbreviations.
+  * **ePatient.09 - Patient's Home ZIP Code**
+  NEMSIS only supports postal codes matching US, Canada, or Mexico patterns. If the value is valid for NEMSIS, use it.
+  * **ePatient.10 - Patient's Country of Residence**
+  HL7 Value Set for Country has no authoritative source. NEMSIS specifies ISO 3166 and requires exactly two characters. If the value is valid for NEMSIS, use it.
+  * **ePatient.12 - Social Security Number**
 * **ePatient.13 - Gender**
 * **ePatient.14 - Race**
   C-CDA `raceCode` and `ethnicityCode` both map to this element. Additional races (`sdtc:raceCode`) that are supported by NEMSIS are also mapped, but codes that are more specific are not mapped (the complete list for `sdtc:raceCode` has over 490 items).
 * **ePatient.17 - Date of Birth**
 * **ePatient.18 - Patient's Phone Number**
-  NEMSIS only supports US phone numbers.
 * **ePatient.19 - Patient's Email Address**
 * **ePatient.20 - State Issuing Driver's License**
 * **ePatient.21 - Driver's License Number**
-
-Patient's Home Address, City, State, ZIP Code, and Country could also be mapped, but they are not implemented in this transformation. City would need to be mapped from text to GNIS code. State would need to be mapped from postal abbreviation to ANSI code.
+* **ePatient.24 - Patient's Preferred Language(s)**
+  If language code has a dash (for regional subtags), use only the portion before the dash. Map from ISO-639-1 (two-character codes) and ISO-639-2 (three-character codes, both "B" [bibliographic] and "T" [terminology] codes) to the codes that are supported by NEMSIS.
+* **ePatient.25 - Sex**
 
 ### eOutcome
 
@@ -90,4 +104,8 @@ Determine the encounter type from `ClinicalDocument/componentOf/encompassingEnco
 
 ### Terminology Mapping
 
-As noted above, NEMSIS only supports ICD-10-CM for diagnoses and ICD-10-PCS for procedures. C-CDA documents often use SNOMED, HCPCS, and CPT and may not provide translations. This transformation uses a function named `n:terminology` in `includes/terminologyService.xsl` that can be extended to implement calls to a terminology service. If the transformation doesn't find a NEMSIS-supported code, it will pass the HL7 `code` or `value` node to the `n:terminology` function. If you have access to a terminology service, you can add code to the `n:terminology` function to implement an API call to the terminology service to request translation to the NEMSIS-supported code system and parse the response. The `n:terminology` function should return a simple string value representing the translated code. If the mapping is unsuccessful, the function should return nothing.
+As noted above, NEMSIS only supports ICD-10-CM for diagnoses and ICD-10-PCS for procedures. C-CDA documents often use SNOMED, HCPCS, and CPT and may not provide translations. This transformation uses a function named `n:terminology` in `includes/services.xsl` that can be extended to implement calls to a terminology service. If the transformation doesn't find a NEMSIS-supported code, it will pass the HL7 `code` or `value` node to the `n:terminology` function. If you have access to a terminology service, you can add code to the `n:terminology` function to implement an API call to the terminology service to request translation to the NEMSIS-supported code system and parse the response. The `n:terminology` function should return a simple string value representing the translated code. If the mapping is unsuccessful, the function should return nothing.
+
+### Geographic Names Information System (GNIS) Mapping
+
+As noted above, NEMSIS requires GNIS codes for `ePatient.06 - Patient's Home City`. C-CDA documents use text. This transformation uses a function named `n:gnisEncode` in `includes/services.xsl` that can be extended to implement calls to a GNIS lookup service. If the transformation doesn't find a NEMSIS-supported code, it omits `ePatient.06` in the output. This transformation provides a reference implementation of the function using the NEMSIS TAC GNIS web service. If you have access to a GNIS lookup service, you can modify code in the `n:gnisEncode` function to implement an API call to the terminology service to request translation of city/place names from text to the NEMSIS-supported GNIS code system and parse the response. The `n:gnisEncode` function should return a simple string value representing the translated code. If the mapping is unsuccessful, the function should return nothing.

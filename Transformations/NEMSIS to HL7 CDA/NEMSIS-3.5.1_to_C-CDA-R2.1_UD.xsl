@@ -2,19 +2,19 @@
 
 <!--
 
-XML Stylesheet Language Transformation (XSLT) to transform from NEMSIS EMSDataSet v3.5.0 to HL7 
+XML Stylesheet Language Transformation (XSLT) to transform from NEMSIS EMSDataSet v3.5.1 to HL7 
 C-CDA v2.1 Unstructured Document
 
 This product is provided by the NEMSIS TAC, without charge, to facilitate a data mapping between 
-NEMSIS v3.5.0 and HL7 C-CDA. This stylesheet transforms a PCR from an EMS crew, provided in NEMSIS 
-v3.5.0 format, into an HL7 C-CDA R2.1 Clinical Document representing the information from EMS's care 
+NEMSIS v3.5.1 and HL7 C-CDA. This stylesheet transforms a PCR from an EMS crew, provided in NEMSIS 
+v3.5.1 format, into an HL7 C-CDA R2.1 Clinical Document representing the information from EMS's care 
 of the patient.
 
 This stylesheet assumes the document to be transformed is a NEMSIS EMSDataSet Document containing a 
 single PCR. If the document contains multiple PCRs, only the first PCR is transformed.
 
-Version: 3.5.0.230317CP4_2.1.2022Sep_240820
-Revision Date: August 20, 2024
+Version: 3.5.1.250403CP1_2.1.2022Sep_250610
+Revision Date: June 10, 2025
 
 -->
 
@@ -36,12 +36,12 @@ Revision Date: August 20, 2024
        agency that is not available in NEMSIS but mandatory in the HL7 C-CDA header. This parameter 
        makes it possible to point to a file or other URL that contains the necessary information. 
        If this parameter is not provided, the stylesheet will use the configuration in 
-       NEMSIS-3.5.0_to_C-CDA-R2.1_Config.xml located in the same location as this transformation 
+       NEMSIS-3.5.1_to_C-CDA-R2.1_Config.xml located in the same location as this transformation 
        file.
    -->
   <xsl:param name="configUrl"/>
 
-  <xsl:variable name="config" select="document(if ($configUrl) then $configUrl else 'NEMSIS-3.5.0_to_C-CDA-R2.1_Config.xml')/hl7:config"/>
+  <xsl:variable name="config" select="document(if ($configUrl) then $configUrl else 'NEMSIS-3.5.1_to_C-CDA-R2.1_Config.xml')/hl7:config"/>
 
   <!-- The current date/time is used for effectiveTime and author/time. The C-CDA US Realm Header 
        specifies that effectiveTime "signifies the document creation time, when the document first 
@@ -176,6 +176,7 @@ Revision Date: August 20, 2024
                 <xsl:copy-of select="n:map('given', n:ePatient.PatientNameGroup/n:ePatient.03, true())"/>
                 <xsl:copy-of select="n:map('given', n:ePatient.PatientNameGroup/n:ePatient.04, false())"/>
                 <xsl:copy-of select="n:map('family', n:ePatient.PatientNameGroup/n:ePatient.02, true())"/>
+                <xsl:copy-of select="n:map('suffix', n:ePatient.PatientNameGroup/n:ePatient.23, false())"/>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:attribute name="nullFlavor">NI</xsl:attribute>
@@ -206,12 +207,20 @@ Revision Date: August 20, 2024
               <ethnicGroupCode nullFlavor="NI"/>
             </xsl:otherwise>
           </xsl:choose>
-          <!-- languageCommunication not supported in NEMSIS -->
-          <languageCommunication>
-            <languageCode nullFlavor="NI"/>
-            <proficiencyLevelCode nullFlavor="NI"/>
-            <preferenceInd nullFlavor="NI"/>
-          </languageCommunication>
+          <xsl:for-each select="n:ePatient.24">
+            <languageCommunication>
+              <xsl:copy-of select="n:map('languageCode', ., true())"/>
+              <proficiencyLevelCode nullFlavor="NI"/>
+              <preferenceInd nullFlavor="NI"/>
+            </languageCommunication>
+          </xsl:for-each>
+          <xsl:if test="not(n:ePatient.24)">
+            <languageCommunication>
+              <languageCode nullFlavor="NI"/>
+              <proficiencyLevelCode nullFlavor="NI"/>
+              <preferenceInd nullFlavor="NI"/>
+            </languageCommunication>
+          </xsl:if>
         </patient>
       </patientRole>
     </recordTarget>
@@ -456,6 +465,15 @@ Revision Date: August 20, 2024
     <xsl:attribute name="use" select="key('code', ., $emailAddressType)/@hl7"/>
    </xsl:template>
 
+  <!-- Language -->
+  <xsl:template match="n:ePatient.24">
+    <xsl:choose>
+      <!-- NEMSIS code for "Italian" ("ito") doesn't match ISO-639-3 ("itl"); map it to correct 
+           ISO-639-3 code. Otherwise, use the NEMSIS value. -->
+      <xsl:when test=". = 'ito'">itl</xsl:when>
+      <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
   <!-- #Functions# -->
 
@@ -538,13 +556,14 @@ Revision Date: August 20, 2024
   </xsl:variable>
 
   <!-- Race -->
-  <!-- HL7 raceCode, value set 2.16.840.1.113883.1.11.1 -->
+  <!-- HL7 raceCode, value set 2.16.840.1.113883.3.2074.1.1.3 -->
   <xsl:variable name="race">
     <code hl7="1002-5" nemsis="2514001" hl7Desc="American Indian or Alaska Native" nemsisDesc="American Indian or Alaska Native"/>
     <code hl7="2028-9" nemsis="2514003" hl7Desc="Asian" nemsisDesc="Asian"/>
     <code hl7="2054-5" nemsis="2514005" hl7Desc="Black or African American" nemsisDesc="Black or African American"/>
     <code hl7="2076-8" nemsis="2514009" hl7Desc="Native Hawaiian or Other Pacific Islander" nemsisDesc="Native Hawaiian or Other Pacific Islander"/>
     <code hl7="2106-3" nemsis="2514011" hl7Desc="White" nemsisDesc="White"/>
+    <code hl7="2106-3" nemsis="2514013" hl7Desc="White" nemsisDesc="Middle Eastern or North African"/>
   </xsl:variable>
 
   <!-- Phone Number Type -->

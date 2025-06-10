@@ -4,12 +4,12 @@
 
 Functions
 
-Version: 2.1.2022Sep_3.5.0.230317CP4_250603
-Revision Date: June 3, 2025
+Version: 2.1.2022Sep_3.5.1.250403CP1_250610
+Revision Date: June 10, 2025
 
 -->
 
-<xsl:stylesheet version="2.0"
+<xsl:stylesheet version="3.0"
   xmlns="http://www.nemsis.org"
   xmlns:hl7="urn:hl7-org:v3"
   xmlns:n="http://www.nemsis.org"
@@ -24,15 +24,19 @@ Revision Date: June 3, 2025
     <xsl:param name="hl7Element"/>
     <xsl:param name="nemsisRequired" as="xs:boolean"/>
     <xsl:variable name="result">
-      <xsl:apply-templates select="$hl7Element"/>
+      <xsl:for-each select="$hl7Element">
+        <xsl:element name="{$nemsisElementName}">
+          <xsl:apply-templates select="."/>
+        </xsl:element>
+      </xsl:for-each>
     </xsl:variable>
-    <xsl:if test="$result[. != ''] or $nemsisRequired">
+    <xsl:for-each select="$result/*[@* | node()]">
+      <xsl:copy-of select="."/>
+    </xsl:for-each>
+    <xsl:if test="not($result/*[@* | node()]) and $nemsisRequired">
       <xsl:element name="{$nemsisElementName}">
-        <xsl:if test="not($result[. != ''])">
-          <xsl:attribute name="xsi:nil">true</xsl:attribute>
-          <xsl:attribute name="NV">7701003</xsl:attribute>
-        </xsl:if>
-        <xsl:copy-of select="$result"/>
+        <xsl:attribute name="xsi:nil">true</xsl:attribute>
+        <xsl:attribute name="NV">7701003</xsl:attribute>
       </xsl:element>
     </xsl:if>
   </xsl:function>
@@ -50,7 +54,7 @@ Revision Date: June 3, 2025
           <xsl:value-of select="$codeInSource"/>
         </xsl:element>
       </xsl:when>
-      <!-- Otherwise, call the terminology service (extensible function in terminologyService.xsl) -->
+      <!-- Otherwise, call the terminology service (extensible function in services.xsl) -->
       <xsl:otherwise>
         <xsl:variable name="codeFromTerminologyService" select="n:terminology($code, $codeSystem)"/>
         <xsl:choose>

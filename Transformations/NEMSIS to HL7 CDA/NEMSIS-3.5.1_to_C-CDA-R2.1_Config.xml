@@ -3,7 +3,7 @@
 <!--
 
 EMS agency configuration information for XML Stylesheet Language Transformations (XSLTs) to 
-transform from NEMSIS EMSDataSet v3.5.0 to HL7 C-CDA v2.1 documents. This configuration document
+transform from NEMSIS EMSDataSet v3.5.1 to HL7 C-CDA v2.1 documents. This configuration document
 contains information about the EMS agency that is necessary in HL7 C-CDA documents but not present
 in NEMSIS documents. Ths information in this document should be on a per-agency basis, replacing 
 the sample data below with actual information about the EMS agency. The data in author and custodian 

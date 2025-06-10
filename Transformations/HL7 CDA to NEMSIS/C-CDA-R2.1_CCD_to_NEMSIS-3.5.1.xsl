@@ -3,22 +3,22 @@
 <!--
 
 XML Stylesheet Language Transformation (XSLT) to transform from HL7 C-CDA v2.1 Continuity of Care 
-Document to NEMSIS EMSDataSet v3.5.0
+Document to NEMSIS EMSDataSet v3.5.1
 
 This product is provided by the NEMSIS TAC, without charge, to facilitate a data mapping between 
-HL7 C-CDA and NEMSIS v3.5.0. This stylesheet transforms a Clinical Document from a hospital,
-provided in HL7 C-CDA 2.1 format, into a partial NEMSIS v3.5.0 EMSDataSet XML document containing 
+HL7 C-CDA and NEMSIS v3.5.1. This stylesheet transforms a Clinical Document from a hospital,
+provided in HL7 C-CDA 2.1 format, into a partial NEMSIS v3.5.1 EMSDataSet XML document containing 
 an eOutcome data section representing the information from the hospital's care of the patient.
 
 The document to be transformed may contain multiple encounters, which may include a hospital 
 emergency department encounter, inpatient encounter, or both.
 
-Version: 2.1.2022Sep_3.5.0.230317CP4_250605
-Revision Date: June 5, 2025
+Version: 2.1.2022Sep_3.5.1.250403CP1_250610
+Revision Date: June 10, 2025
 
 -->
 
-<xsl:stylesheet version="2.0"
+<xsl:stylesheet version="3.0"
   xmlns="http://www.nemsis.org"
   xmlns:hl7="urn:hl7-org:v3"
   xmlns:n="http://www.nemsis.org"
@@ -28,9 +28,9 @@ Revision Date: June 5, 2025
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   exclude-result-prefixes="hl7 n sdtc xs">
 
-  <!-- If you have access to a terminology mapping service, edit terminologyService.xsl to 
+  <!-- If you have access to a terminology mapping or GNIS service, edit services.xsl to 
        implement API calls. -->
-  <xsl:import href="includes/terminologyService.xsl"/>
+  <xsl:import href="includes/services.xsl"/>
   <xsl:import href="includes/functions.xsl"/>
   <xsl:import href="includes/mappings.xsl"/>
   <xsl:import href="includes/ePatient.xsl"/>
@@ -69,9 +69,9 @@ Revision Date: June 5, 2025
 
   <xsl:template match="/">
     <xsl:comment>
-     This partial NEMSIS 3.5.0 document was generated from an HL7 C-CDA 2.1 Continuity of Care 
+     This partial NEMSIS 3.5.1 document was generated from an HL7 C-CDA 2.1 Continuity of Care 
      Document via an XML Stylesheet Language Transformation (XSLT). It is not valid per the NEMSIS 
-     3.5.0 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome 
+     3.5.1 XSD. Its purpose is to convey hospital patient care information in the NEMSIS eOutcome 
      section.
     </xsl:comment>
     <xsl:text>&#10;</xsl:text>
@@ -108,7 +108,7 @@ Revision Date: June 5, 2025
   <!-- #Document# -->
 
   <xsl:template match="/hl7:ClinicalDocument">
-    <EMSDataSet xmlns="http://www.nemsis.org" xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.0/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
+    <EMSDataSet xmlns="http://www.nemsis.org" xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.1/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
       <Header>
         <PatientCareReport>
           <!-- patientRole > ePatient -->
@@ -334,8 +334,8 @@ Revision Date: June 5, 2025
 
 
   <!-- #Variables# -->
-  
-  <!-- Enounter Type Variable -->
+
+  <!-- Encounter Type Variable -->
   <xsl:variable name="encType">
     <ed>
       <code hl7="99281" hl7Desc="Emergency department visit for the evaluation and management of a patient that may not require the presence of a physician or other qualified health care professional"/>

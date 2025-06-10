@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-     This partial NEMSIS 3.5.0 document was generated from an HL7 C-CDA 2.1 Discharge Summary document 
-     via an XML Stylesheet Language Transformation (XSLT). It is not valid per the NEMSIS 3.5.0 XSD. 
+     This partial NEMSIS 3.5.1 document was generated from an HL7 C-CDA 2.1 Discharge Summary document 
+     via an XML Stylesheet Language Transformation (XSLT). It is not valid per the NEMSIS 3.5.1 XSD. 
      Its purpose is to convey hospital patient care information in the NEMSIS eOutcome section.
     -->
 <EMSDataSet xmlns="http://www.nemsis.org"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.0/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
+            xsi:schemaLocation="http://www.nemsis.org http://www.nemsis.org/media/nemsis_v3/release-3.5.1/XSDs/NEMSIS_XSDs/EMSDataSet_v3.xsd">
    <Header>
       <PatientCareReport>
          <ePatient>
@@ -14,13 +14,26 @@
                <ePatient.02>Gislason</ePatient.02>
                <ePatient.03>Malachi</ePatient.03>
                <ePatient.04>Rowe</ePatient.04>
+               <ePatient.23>III</ePatient.23>
             </ePatient.PatientNameGroup>
+            <ePatient.05>70 S 100 W St</ePatient.05>
+            <ePatient.06>1430488</ePatient.06>
+            <ePatient.07 xsi:nil="true" NV="7701003"/>
+            <ePatient.08>49</ePatient.08>
+            <ePatient.09>84050</ePatient.09>
+            <ePatient.10>US</ePatient.10>
             <ePatient.12>222001867</ePatient.12>
             <ePatient.13>9906003</ePatient.13>
             <ePatient.14>2514011</ePatient.14>
+            <ePatient.AgeGroup>
+               <ePatient.15 xsi:nil="true" NV="7701003"/>
+               <ePatient.16 xsi:nil="true" NV="7701003"/>
+            </ePatient.AgeGroup>
             <ePatient.17>1992-08-17</ePatient.17>
             <ePatient.18 PhoneNumberType="9913003">435-415-2554</ePatient.18>
-            <ePatient.18 PhoneNumberType="9913005">304-989-3656</ePatient.18>
+            <ePatient.18 PhoneNumberType="9913005">+1 304 989 3656</ePatient.18>
+            <ePatient.24>eng</ePatient.24>
+            <ePatient.25 xsi:nil="true" NV="7701003"/>
          </ePatient>
          <eOutcome>
             <eOutcome.01>01</eOutcome.01>

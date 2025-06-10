@@ -41,6 +41,11 @@
           <proficiencyLevelCode codeSystem="2.16.840.1.113883.5.61" code="E" displayName="Excellent"/>
           <preferenceInd value="true"/>
         </languageCommunication>
+        <languageCommunication>
+          <languageCode code="de"/>
+          <proficiencyLevelCode codeSystem="2.16.840.1.113883.5.61" code="G" displayName="Good"/>
+          <preferenceInd value="false"/>
+        </languageCommunication>
         </patient>
       </patientRole>
   </recordTarget>
@@ -1211,8 +1216,10 @@
           <title>Social History</title>
           <text>
             <list>
-              <item ID="SocialHistory1">Smoking Status: Never smoked tobacco</item>
+              <item ID="SocialHistory1">Tobacco smoking status: Never smoked tobacco</item>
               <item ID="SocialHistory2">Characteristics of residence: Lives with daughter</item>
+              <item ID="SocialHistory3">Characteristics of residence: Stairs in house</item>
+              <item ID="SocialHistory4">Sex assigned at birth: Female</item>
             </list>
           </text>
           <entry>
@@ -1284,6 +1291,18 @@
                   <code codeSystem="2.16.840.1.113883.6.101" code="207XX0801X" displayName="Allopathic &amp; Osteopathic Physicians; Orthopaedic Surgery, Orthopaedic Trauma"/>
                 </assignedAuthor>
               </author>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.200" extension="2023-05-01"/>
+              <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" displayName="Sex Assigned at Birth"/>
+              <text>
+                <reference value="#SocialHistory4"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime value="19381202"/>
+              <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" code="F" displayName="Female"/>
             </observation>
           </entry>
         </section>
