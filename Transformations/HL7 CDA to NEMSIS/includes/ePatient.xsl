@@ -100,7 +100,7 @@ Revision Date: June 10, 2025
     <ePatient.PatientNameGroup>
       <xsl:copy-of select="n:map('ePatient.02', hl7:family, false())"/>
       <xsl:copy-of select="n:map('ePatient.03', hl7:given[1], false())"/>
-      <xsl:copy-of select="n:map('ePatient.04', hl7:given, false())"/>
+      <xsl:copy-of select="n:map('ePatient.04', hl7:given[2], false())"/>
       <xsl:copy-of select="n:map('ePatient.23', hl7:suffix, false())"/>
     </ePatient.PatientNameGroup>
   </xsl:template>
